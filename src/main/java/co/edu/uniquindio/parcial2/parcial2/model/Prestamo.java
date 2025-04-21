@@ -3,6 +3,7 @@ package co.edu.uniquindio.parcial2.parcial2.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import co.edu.uniquindio.parcial2.parcial2.model.Objeto;
 
 public class Prestamo {
     private String numeroPrestamo;
@@ -12,6 +13,7 @@ public class Prestamo {
     private Empleado empleadoAsociado;
     private Cliente clienteAsociado;
     List<Objeto> listaObjetosAsociados = new ArrayList<>();
+    PrestamoObjeto ownedByPrestamoUq;
 
 
     public Prestamo() {
@@ -68,6 +70,12 @@ public class Prestamo {
     public List<Objeto> getListaObjetosAsociados() {
         return listaObjetosAsociados;
     }
+
+    public PrestamoObjeto getOwnedByPrestamoUq() {
+        return ownedByPrestamoUq;}
+
+    public void setOwnedByPrestamoUq(PrestamoObjeto ownedByPrestamoUq) {
+        this.ownedByPrestamoUq = ownedByPrestamoUq;}
 
     public void setListaObjetosAsociados(List<Objeto> listaObjetosAsociados) {
         this.listaObjetosAsociados = listaObjetosAsociados;
