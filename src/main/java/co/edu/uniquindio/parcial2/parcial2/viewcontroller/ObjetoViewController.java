@@ -1,7 +1,13 @@
 package co.edu.uniquindio.parcial2.parcial2.viewcontroller;
-
+import co.edu.uniquindio.parcial2.parcial2.controller.ObjetoController;
+import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.parcial2.parcial2.controller.ClienteController;
+import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class ObjetoViewController {
+    ObservableList<ObjetoDto> listaObjetos = FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
@@ -46,16 +53,19 @@ public class ObjetoViewController {
 
     @FXML
     void onActualizarObjeto(ActionEvent event) {
+        actualizarObjeto();
 
     }
 
     @FXML
     void onAgregarObjeto(ActionEvent event) {
+       agregarObjeto();
 
     }
 
     @FXML
     void onEliminarObjeto(ActionEvent event) {
+        eliminarObjeto();
 
     }
 
@@ -66,16 +76,14 @@ public class ObjetoViewController {
 
     @FXML
     void initialize() {
-        assert btnActualizarObjeto != null : "fx:id=\"btnActualizarObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert btnAgregarObjeto != null : "fx:id=\"btnAgregarObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert btnEliminarObjeto != null : "fx:id=\"btnEliminarObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert btnNuevoObjeto != null : "fx:id=\"btnNuevoObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert tableObjetos != null : "fx:id=\"tableObjetos\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert tcCodigoObjeto != null : "fx:id=\"tcCodigoObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert tcNombreObjeto != null : "fx:id=\"tcNombreObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert txtCodigoObjeto != null : "fx:id=\"txtCodigoObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-        assert txtNombreObjeto != null : "fx:id=\"txtNombreObjeto\" was not injected: check your FXML file 'Objeto.fxml'.";
-
+       ObjetoController objetoController  = new ObjetoController();
+        initView();
+    }
+    private void initView() {
+        initDataBinding();
+        tableObjetos.getItems().clear();
+        tableObjetos.setItems(listaObjetos());
+        listenerSelection();
     }
 
 }
