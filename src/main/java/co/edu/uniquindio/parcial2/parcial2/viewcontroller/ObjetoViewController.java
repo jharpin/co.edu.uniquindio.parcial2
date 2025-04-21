@@ -10,10 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import static co.edu.uniquindio.parcial2.parcial2.utils.PrestamoConstantes.*;
 
 public class ObjetoViewController {
     ObservableList<ObjetoDto> listaObjetos = FXCollections.observableArrayList();
@@ -80,10 +79,31 @@ public class ObjetoViewController {
         initView();
     }
     private void initView() {
-        initDataBinding();
+        //initDataBinding();
         tableObjetos.getItems().clear();
         tableObjetos.setItems(listaObjetos());
-        listenerSelection();
+        //listenerSelection();
     }
+
+    private void agregarCliente() {
+        //1. Captura los datos del formulario
+        //2. Armar un Dto con los datos
+        ObjetoDto objetoDto = crearObjetoDto();
+        //3.Validar campos
+        if(datosValidos(clienteDto)){
+            //4. Solicitar crear cliente
+            if(clienteController.agregarCliente(clienteDto)){
+                listaClientes.addAll(clienteDto);
+                limpiarCampos();
+                mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
+            }else{
+                mostrarMensaje(TITULO_CLIENTE_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
+            }
+        }else{
+            //mensaje de notificacion de campos incompletos
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+
 
 }
