@@ -76,14 +76,14 @@ public class ObjetoViewController {
 
     @FXML
     void initialize() {
-       ObjetoController objetoController  = new ObjetoController();
+        objetoController = new ObjetoController();
         initView();
     }
     private void initView() {
         //initDataBinding();
         tableObjetos.getItems().clear();
-        //tableObjetos.setItems(listaObjetos());
-        //listenerSelection();
+        tableObjetos.setItems(listaObjetos());
+
     }
 
     private void agregarObjeto() {
@@ -106,7 +106,7 @@ public class ObjetoViewController {
                 txtCodigoObjeto.getText());
     }
     private boolean datosValidos(ObjetoDto objetoDto) {
-        if(objetoDto.nombre().isBlank() ||
+        if(objetoDto.nombreObjeto().isBlank() ||
                 objetoDto.idObjeto().isBlank()
 
         ){

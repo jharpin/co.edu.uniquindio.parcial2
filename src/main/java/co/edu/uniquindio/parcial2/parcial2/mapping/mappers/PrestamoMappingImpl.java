@@ -72,8 +72,6 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
     @Override
     public Objeto objetoDtoToObjeto(ObjetoDto objetoDto) {
         return builder()
-                .nombreObjeto(objetoDto.nombreObjeto())
-                .idObjeto(objetoDto.idObjeto())
                 .build();
     }
 

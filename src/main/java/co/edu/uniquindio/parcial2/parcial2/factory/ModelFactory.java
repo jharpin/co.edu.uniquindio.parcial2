@@ -55,7 +55,7 @@ public class ModelFactory implements IModelFactoryService {
     @Override
     public boolean agregarObjeto(ObjetoDto objetoDto) {
        Objeto objeto = mapper.objetoDtoToObjeto(objetoDto);
-        return false;
+        return prestamoObjeto.crearObjeto(objeto);
     }
 
     @Override

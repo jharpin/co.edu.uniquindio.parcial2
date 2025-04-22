@@ -110,7 +110,29 @@ public class PrestamoObjeto {
         }
     }
 
+
     public List<Objeto> getListaObjetos() {
-        return List.of();
+        return listaObjetos;
+    }
+
+    public boolean crearObjeto(Objeto nuevoObjeto){
+        Objeto objetoEncontrado = obtenerObjeto(nuevoObjeto.getIdObjeto());
+        if(objetoEncontrado == null){
+            getListaObjetos().add(nuevoObjeto);
+            return true;
+        }else{
+            return  false;
+        }
+    }
+    private Objeto obtenerObjeto(String idObjeto) {
+        Objeto objeto= null;
+        for (Objeto objeto1: getListaObjetos()) {
+            if(objeto1.getIdObjeto().equalsIgnoreCase(idObjeto)){
+                objeto = objeto1;
+                break;
+            }
+        }
+
+        return objeto;
     }
 }
