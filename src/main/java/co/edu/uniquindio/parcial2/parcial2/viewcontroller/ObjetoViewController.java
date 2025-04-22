@@ -65,7 +65,7 @@ public class ObjetoViewController {
 
     @FXML
     void onEliminarObjeto(ActionEvent event) {
-        eliminarObjeto();
+        // eliminarObjeto();
 
     }
 
@@ -82,18 +82,14 @@ public class ObjetoViewController {
     private void initView() {
         //initDataBinding();
         tableObjetos.getItems().clear();
-        tableObjetos.setItems(listaObjetos());
+        //tableObjetos.setItems(listaObjetos());
         //listenerSelection();
     }
 
     private void agregarObjeto() {
-        //1. Captura los datos del formulario
-        //2. Armar un Dto con los datos
         ObjetoDto objetoDto = crearObjetoDto();
-        //3.Validar campos
         if(datosValidos(objetoDto)){
-            //4. Solicitar crear cliente
-            if(ObjetoController.agregarObjeto(objetoDto)){
+            if(objetoController.agregarObjeto(objetoDto)){
                 listaObjetos.addAll(objetoDto);
                 limpiarCampos();
                 mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
@@ -101,7 +97,6 @@ public class ObjetoViewController {
                 mostrarMensaje(TITULO_CLIENTE_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
             }
         }else{
-            //mensaje de notificacion de campos incompletos
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
         }
     }
@@ -145,7 +140,7 @@ public class ObjetoViewController {
             return false;
         }
     }
-    private void eliminarObjeto() {
+   /** private void eliminarObjeto() {
         if(ObjetoSeleccionado != null){
             if(objetoController.eliminarObjeto(ObjetoSeleccionado.idObjeto())){
                 listaObjetos.remove(objetoSeleccionado);
@@ -155,7 +150,7 @@ public class ObjetoViewController {
                 mostrarMensaje(TITULO_CLIENTE_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
             }
         }
-    }
+    }**/
 
 
 }

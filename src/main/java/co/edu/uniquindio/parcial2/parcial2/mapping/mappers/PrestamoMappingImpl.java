@@ -9,12 +9,14 @@ import co.edu.uniquindio.parcial2.parcial2.service.IPrestamoMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrestamoMappingImpl implements IPrestamoMapping {
+import static co.edu.uniquindio.parcial2.parcial2.model.Objeto.*;
+
+public  class PrestamoMappingImpl implements IPrestamoMapping {
 
 
     @Override
     public List<ClienteDto> getClientesDto(List<Cliente> listaClientes) {
-        if(listaClientes == null){
+        if (listaClientes == null) {
             return null;
         }
         List<ClienteDto> listaClientesDto = new ArrayList<ClienteDto>(listaClientes.size());
@@ -45,9 +47,10 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 .direccion(clienteDto.direccion())
                 .build();
     }
+
     @Override
     public List<ObjetoDto> getObjetoDto(List<Objeto> listaObjetos) {
-        if(listaObjetos == null){
+        if (listaObjetos == null) {
             return null;
         }
         List<ObjetoDto> listaObjetosDto = new ArrayList<ObjetoDto>(listaObjetos.size());
@@ -57,18 +60,24 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
 
         return listaObjetosDto;
     }
+
     @Override
     public ObjetoDto ObjetoToObjetoDto(Objeto objeto) {
         return new ObjetoDto(
                 objeto.getNombre(),
-               objeto.getIdObjeto());
+                objeto.getIdObjeto());
     }
 
     @Override
-    public Objeto ObjetoDtoToObjeto(ObjetoDto objetoDto) {
+    public Objeto objetoDtoToObjeto(ObjetoDto objetoDto) {
         return Objeto.builder()
-                .nombre(objetoDto.nombre())
+                .nombreObjeto(objetoDto.nombreObjeto())
                 .idObjeto(objetoDto.idObjeto())
                 .build();
     }
+
+
+
+
+
 }

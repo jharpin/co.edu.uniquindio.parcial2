@@ -109,4 +109,8 @@ public class PrestamoObjeto {
             return false;
         }
     }
+
+    public List<Objeto> getListaObjetos() {
+        return List.of();
+    }
 }
