@@ -13,8 +13,8 @@ public interface IPrestamoMapping {
     ClienteDto clienteToClienteDto(Cliente cliente);
     Cliente clienteDtoToCliente(ClienteDto clienteDto);
     List<ObjetoDto> getObjetoDto(List<Objeto> listaObjeto);
-    ObjetoDto ObjetoToObjetoDto(Objeto objeto);
+    ObjetoDto objetoToObjetoDto(Objeto objeto);
     Objeto objetoDtoToObjeto(ObjetoDto objetoDto);
 
-    Objeto ObjetoDtoToObjeto(ObjetoDto objetoDto);
+
 }

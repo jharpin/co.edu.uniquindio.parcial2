@@ -55,27 +55,27 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
         }
         List<ObjetoDto> listaObjetosDto = new ArrayList<ObjetoDto>(listaObjetos.size());
         for (Objeto objeto : listaObjetos) {
-            listaObjetosDto.add(ObjetoToObjetoDto(objeto));
+            listaObjetosDto.add(objetoToObjetoDto(objeto));
         }
 
         return listaObjetosDto;
     }
 
+
     @Override
-    public ObjetoDto ObjetoToObjetoDto(Objeto objeto) {
+    public ObjetoDto objetoToObjetoDto(Objeto objeto) {
         return new ObjetoDto(
-                objeto.getNombre(),
+                objeto.getNombreObjeto(),
                 objeto.getIdObjeto());
     }
 
     @Override
     public Objeto objetoDtoToObjeto(ObjetoDto objetoDto) {
-        return Objeto.builder()
+        return builder()
                 .nombreObjeto(objetoDto.nombreObjeto())
                 .idObjeto(objetoDto.idObjeto())
                 .build();
     }
-
 
 
 

@@ -10,8 +10,8 @@ public class ObjetoBuilder {
         return nombreObjeto;
     }
 
-    public void setNombreObejto(String nombre) {
-        this.nombreObjeto= nombre;
+    public void setNombreObjeto(String nombreObjeto) {
+        this.nombreObjeto= nombreObjeto;
     }
 
     public String getIdObjeto() {

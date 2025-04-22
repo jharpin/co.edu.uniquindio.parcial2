@@ -4,7 +4,7 @@ import co.edu.uniquindio.parcial2.parcial2.model.builder.ClienteBuilder;
 import co.edu.uniquindio.parcial2.parcial2.model.builder.ObjetoBuilder;
 
 public class Objeto {
-    private String nombre;
+    private String nombreObjeto;
     private String idObjeto;
     PrestamoObjeto ownedByPrestamoUq;
 
@@ -12,20 +12,20 @@ public class Objeto {
     }
 
     public Objeto(String nombre, String idObjeto) {
-        this.nombre = nombre;
+        this.nombreObjeto = nombreObjeto;
         this.idObjeto = idObjeto;
     }
 
-    public Objeto(String nombre) {
-        this.nombre = nombre;
+    public Objeto(String nombreObjeto) {
+        this.nombreObjeto = nombreObjeto;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreObjeto() {
+        return nombreObjeto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreObjeto(String nombreObjeto) {
+        this.nombreObjeto = nombreObjeto;
     }
 
     public String getIdObjeto() {
@@ -50,7 +50,7 @@ public class Objeto {
     @Override
     public String toString() {
         return "Objeto{" +
-                "nombre='" + nombre + '\'' +
+                "nombre='" + nombreObjeto + '\'' +
                 ", idObjeto='" + idObjeto + '\'' +
                 '}';
     }
