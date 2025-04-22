@@ -1,8 +1,10 @@
 package co.edu.uniquindio.parcial2.parcial2.factory;
 
 import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
+import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
 import co.edu.uniquindio.parcial2.parcial2.mapping.mappers.PrestamoMappingImpl;
 import co.edu.uniquindio.parcial2.parcial2.model.Cliente;
+import co.edu.uniquindio.parcial2.parcial2.model.Objeto;
 import co.edu.uniquindio.parcial2.parcial2.model.PrestamoObjeto;
 import co.edu.uniquindio.parcial2.parcial2.service.IModelFactoryService;
 import co.edu.uniquindio.parcial2.parcial2.service.IPrestamoMapping;
@@ -34,6 +36,11 @@ public class ModelFactory implements IModelFactoryService {
     }
 
     @Override
+    public List<ObjetoDto> obtenerObjetos() {
+        return mapper.getObjetoDto(prestamoObjeto.getListaObjetos());
+    }
+
+    @Override
     public boolean agregarCliente(ClienteDto clienteDto) {
         Cliente cliente = mapper.clienteDtoToCliente(clienteDto);
         return prestamoObjeto.crearCliente(cliente);
@@ -43,5 +50,16 @@ public class ModelFactory implements IModelFactoryService {
     @Override
     public boolean eliminarCliente(String cedula) {
         return prestamoObjeto.eliminarCliente(cedula);
+    }
+
+    @Override
+    public boolean agregarObjeto(ObjetoDto objetoDto) {
+       Objeto objeto = mapper.objetoDtoToObjeto(objetoDto);
+        return false;
+    }
+
+    @Override
+    public boolean eliminarObjeto(String idObjeto) {
+        return false;
     }
 }

@@ -1,7 +1,9 @@
 package co.edu.uniquindio.parcial2.parcial2.mapping.mappers;
 
 import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
+import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
 import co.edu.uniquindio.parcial2.parcial2.model.Cliente;
+import co.edu.uniquindio.parcial2.parcial2.model.Objeto;
 import co.edu.uniquindio.parcial2.parcial2.service.IPrestamoMapping;
 
 import java.util.ArrayList;
@@ -41,6 +43,32 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 .cedula(clienteDto.cedula())
                 .email(clienteDto.email())
                 .direccion(clienteDto.direccion())
+                .build();
+    }
+    @Override
+    public List<ObjetoDto> getObjetoDto(List<Objeto> listaObjetos) {
+        if(listaObjetos == null){
+            return null;
+        }
+        List<ObjetoDto> listaObjetosDto = new ArrayList<ObjetoDto>(listaObjetos.size());
+        for (Objeto objeto : listaObjetos) {
+            listaObjetosDto.add(ObjetoToObjetoDto(objeto));
+        }
+
+        return listaObjetosDto;
+    }
+    @Override
+    public ObjetoDto ObjetoToObjetoDto(Objeto objeto) {
+        return new ObjetoDto(
+                objeto.getNombre(),
+               objeto.getIdObjeto());
+    }
+
+    @Override
+    public Objeto ObjetoDtoToObjeto(ObjetoDto objetoDto) {
+        return Objeto.builder()
+                .nombre(objetoDto.nombre())
+                .idObjeto(objetoDto.idObjeto())
                 .build();
     }
 }

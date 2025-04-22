@@ -2,6 +2,7 @@ package co.edu.uniquindio.parcial2.parcial2.viewcontroller;
 import co.edu.uniquindio.parcial2.parcial2.controller.ObjetoController;
 import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.parcial2.parcial2.controller.ClienteController;
@@ -16,7 +17,7 @@ import static co.edu.uniquindio.parcial2.parcial2.utils.PrestamoConstantes.*;
 
 public class ObjetoViewController {
     ObservableList<ObjetoDto> listaObjetos = FXCollections.observableArrayList();
-
+    ObjetoController objetoController;
     @FXML
     private ResourceBundle resources;
 
@@ -52,7 +53,7 @@ public class ObjetoViewController {
 
     @FXML
     void onActualizarObjeto(ActionEvent event) {
-        actualizarObjeto();
+        //actualizarObjeto();
 
     }
 
@@ -85,15 +86,15 @@ public class ObjetoViewController {
         //listenerSelection();
     }
 
-    private void agregarCliente() {
+    private void agregarObjeto() {
         //1. Captura los datos del formulario
         //2. Armar un Dto con los datos
         ObjetoDto objetoDto = crearObjetoDto();
         //3.Validar campos
-        if(datosValidos(clienteDto)){
+        if(datosValidos(objetoDto)){
             //4. Solicitar crear cliente
-            if(clienteController.agregarCliente(clienteDto)){
-                listaClientes.addAll(clienteDto);
+            if(ObjetoController.agregarObjeto(objetoDto)){
+                listaObjetos.addAll(objetoDto);
                 limpiarCampos();
                 mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
             }else{
@@ -102,6 +103,57 @@ public class ObjetoViewController {
         }else{
             //mensaje de notificacion de campos incompletos
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+    private ObjetoDto crearObjetoDto() {
+        return new ObjetoDto(
+                txtNombreObjeto.getText(),
+                txtCodigoObjeto.getText());
+    }
+    private boolean datosValidos(ObjetoDto objetoDto) {
+        if(objetoDto.nombre().isBlank() ||
+                objetoDto.idObjeto().isBlank()
+
+        ){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    private void limpiarCampos() {
+        txtNombreObjeto.setText("");
+        txtCodigoObjeto.setText("");
+
+    }
+    private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
+        Alert aler = new Alert(alertType);
+        aler.setTitle(titulo);
+        aler.setHeaderText(header);
+        aler.setContentText(contenido);
+        aler.showAndWait();
+    }
+
+    private boolean mostrarMensajeConfirmacion(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText(mensaje);
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private void eliminarObjeto() {
+        if(ObjetoSeleccionado != null){
+            if(objetoController.eliminarObjeto(ObjetoSeleccionado.idObjeto())){
+                listaObjetos.remove(objetoSeleccionado);
+                limpiarCampos();
+                mostrarMensaje(TITULO_CLIENTE_ELIMINADO, HEADER, BODY_CLIENTE_AGREGADO,Alert.AlertType.INFORMATION);
+            }else{
+                mostrarMensaje(TITULO_CLIENTE_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
+            }
         }
     }
 
