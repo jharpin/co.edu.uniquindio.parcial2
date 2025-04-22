@@ -8,6 +8,8 @@ public class ClienteBuilder {
     protected String nombre;
     protected String apellido;
     protected String email;
+
+
     protected String telefonoFijo;
     protected String telefonoCelular;
     protected String direccion;

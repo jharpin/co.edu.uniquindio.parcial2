@@ -1,5 +1,8 @@
 package co.edu.uniquindio.parcial2.parcial2.model;
 
+import co.edu.uniquindio.parcial2.parcial2.model.builder.ClienteBuilder;
+import co.edu.uniquindio.parcial2.parcial2.model.builder.ObjetoBuilder;
+
 public class Objeto {
     private String nombre;
     private String idObjeto;
@@ -39,6 +42,9 @@ public class Objeto {
 
     public void setOwnedByPrestamoUq(PrestamoObjeto ownedByPrestamoUq) {
         this.ownedByPrestamoUq = ownedByPrestamoUq;
+    }
+    public static ObjetoBuilder builder(){
+        return new ObjetoBuilder();
     }
 
     @Override
