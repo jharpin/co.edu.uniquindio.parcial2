@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.parcial2.parcial2.viewcontroller.EmpleadoViewController">
+
+<AnchorPane prefHeight="495.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.parcial2.parcial2.viewcontroller.EmpleadoViewController">
    <children>
-      <SplitPane layoutX="36.0" layoutY="26.0" prefHeight="329.0" prefWidth="510.0">
-         <items>
-            <Button mnemonicParsing="false" text="Button" />
-         </items>
-      </SplitPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Label layoutX="35.0" layoutY="27.0" text="Nombre:" />
+            <Label layoutX="431.0" layoutY="28.0" text="Apellido:" />
+            <Label layoutX="36.0" layoutY="76.0" prefHeight="17.0" prefWidth="46.0" text="Cédula:" />
+            <Label layoutX="25.0" layoutY="131.0" prefHeight="17.0" prefWidth="59.0" text="Dirección:" />
+            <Label layoutX="439.0" layoutY="76.0" prefHeight="17.0" prefWidth="38.0" text="Email:" />
+            <TextField fx:id="txtNombre" layoutX="90.0" layoutY="22.0" prefHeight="26.0" prefWidth="268.0" />
+            <TextField fx:id="txtApellido" layoutX="485.0" layoutY="22.0" prefHeight="26.0" prefWidth="268.0" />
+            <TextField fx:id="txtCedula" layoutX="89.0" layoutY="72.0" prefHeight="26.0" prefWidth="268.0" />
+            <TextField fx:id="txtEmail" layoutX="484.0" layoutY="71.0" prefHeight="26.0" prefWidth="268.0" />
+            <TextField fx:id="txtdireccion" layoutX="88.0" layoutY="126.0" prefHeight="26.0" prefWidth="268.0" />
+            <Separator layoutX="21.0" layoutY="174.0" prefHeight="4.0" prefWidth="738.0" />
+            <Button fx:id="btnNuevo" layoutX="65.0" layoutY="201.0" mnemonicParsing="false" onAction="#onNuevoCliente" prefHeight="26.0" prefWidth="108.0" text="Nuevo" />
+            <Button fx:id="btnAgregar" layoutX="259.0" layoutY="200.0" mnemonicParsing="false" onAction="#onAgregarCliente" prefHeight="26.0" prefWidth="109.0" text="Agregar" />
+            <Button fx:id="btnActualizar" layoutX="438.0" layoutY="199.0" mnemonicParsing="false" onAction="#onActualizarCliente" prefHeight="26.0" prefWidth="109.0" text="Actualizar" />
+            <Label layoutX="437.0" layoutY="130.0" text="Tipo:" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableEmpleado" layoutX="39.0" layoutY="251.0" prefHeight="163.0" prefWidth="754.0">
+         <columns>
+            <TableColumn fx:id="tcNombre" prefWidth="112.80001068115234" text="Nombre" />
+            <TableColumn fx:id="tcApellido" prefWidth="108.79998779296875" text="Apellido" />
+            <TableColumn fx:id="tcCedula" prefWidth="136.0" text="Cédula" />
+            <TableColumn fx:id="tcEmail" prefWidth="106.4000244140625" text="Email" />
+            <TableColumn fx:id="tcDireccion" prefWidth="147.20004272460938" text="Dirección" />
+            <TableColumn fx:id="tcDireccion1" prefWidth="139.99993896484375" text="tipo" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnEliminar" layoutX="692.0" layoutY="435.0" mnemonicParsing="false" onAction="#onEliminarCliente" prefHeight="26.0" prefWidth="109.0" text="Eliminar" />
+      <MenuButton fx:id="menuTipoEmpleado" layoutX="484.0" layoutY="136.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="219.0" text="tipo empleado ">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>
