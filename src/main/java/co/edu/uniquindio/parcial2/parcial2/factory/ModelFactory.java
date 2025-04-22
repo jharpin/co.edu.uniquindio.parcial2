@@ -60,6 +60,6 @@ public class ModelFactory implements IModelFactoryService {
 
     @Override
     public boolean eliminarObjeto(String idObjeto) {
-        return false;
+        return prestamoObjeto.eliminarObjeto(idObjeto);
     }
 }

@@ -1,12 +1,12 @@
 package co.edu.uniquindio.parcial2.parcial2.viewcontroller;
+
 import co.edu.uniquindio.parcial2.parcial2.controller.ObjetoController;
-import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
+import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import co.edu.uniquindio.parcial2.parcial2.controller.ClienteController;
 import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +16,12 @@ import javafx.scene.control.*;
 import static co.edu.uniquindio.parcial2.parcial2.utils.PrestamoConstantes.*;
 
 public class ObjetoViewController {
-    ObservableList<ObjetoDto> listaObjetos = FXCollections.observableArrayList();
+
     ObjetoController objetoController;
+    ObservableList<ObjetoDto> listaObjetos = FXCollections.observableArrayList();
+    ObjetoDto objetoSeleccionado;
+
+
     @FXML
     private ResourceBundle resources;
 
@@ -37,13 +41,13 @@ public class ObjetoViewController {
     private Button btnNuevoObjeto;
 
     @FXML
-    private TableView<?> tableObjetos;
+    private TableView<ObjetoDto> tableObjetos;
 
     @FXML
-    private TableColumn<?, ?> tcCodigoObjeto;
+    private TableColumn<ObjetoDto, String> tcCodigoObjeto;
 
     @FXML
-    private TableColumn<?, ?> tcNombreObjeto;
+    private TableColumn<ObjetoDto, String> tcNombreObjeto;
 
     @FXML
     private TextField txtCodigoObjeto;
@@ -51,6 +55,11 @@ public class ObjetoViewController {
     @FXML
     private TextField txtNombreObjeto;
 
+    @FXML
+    void initialize() {
+        objetoController = new ObjetoController();
+        initView();
+    }
     @FXML
     void onActualizarObjeto(ActionEvent event) {
         //actualizarObjeto();
@@ -65,32 +74,49 @@ public class ObjetoViewController {
 
     @FXML
     void onEliminarObjeto(ActionEvent event) {
-        // eliminarObjeto();
+        eliminarObjeto();
 
     }
+
+
 
     @FXML
     void onNuevoObjeto(ActionEvent event) {
 
     }
 
-    @FXML
-    void initialize() {
-        objetoController = new ObjetoController();
-        initView();
-    }
+
     private void initView() {
         //initDataBinding();
+        initDataBinding();
+        obtenerObjeto();
         tableObjetos.getItems().clear();
-        tableObjetos.setItems(listaObjetos());
+        tableObjetos.setItems(listaObjetos);
+        listenerSelection();
 
+    }
+
+    private void obtenerObjeto() {
+        listaObjetos.addAll(objetoController.obtenerObjetos());
+    }
+
+    private void initDataBinding() {
+      tcNombreObjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreObjeto()));
+      tcCodigoObjeto.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().idObjeto()));
+    }
+
+    private void listenerSelection(){
+        tableObjetos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            objetoSeleccionado = newSelection;
+            mostrarInformacionObjeto(objetoSeleccionado);
+        });
     }
 
     private void agregarObjeto() {
         ObjetoDto objetoDto = crearObjetoDto();
         if(datosValidos(objetoDto)){
             if(objetoController.agregarObjeto(objetoDto)){
-                listaObjetos.addAll(objetoDto);
+                listaObjetos.add(objetoDto);
                 limpiarCampos();
                 mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
             }else{
@@ -99,6 +125,30 @@ public class ObjetoViewController {
         }else{
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
         }
+    }
+
+    private void eliminarObjeto() {
+        if(objetoSeleccionado != null){
+            System.out.println("Intentando eliminar: " + objetoSeleccionado.idObjeto());
+            if(objetoController.eliminarObjeto(objetoSeleccionado.idObjeto())){
+                listaObjetos.remove(objetoSeleccionado);
+                limpiarCampos();
+            } else {
+                System.out.println("No se pudo eliminar desde el controller");
+            }
+        } else {
+            System.out.println("Ningún objeto seleccionado");
+        }
+    }
+    private void nuevoObjeto() {
+        limpiarCampos();
+        txtNombreObjeto.setText("ingrese el nuevo objeto");
+    }
+
+    private void limpiarCampos() {
+        txtNombreObjeto.setText("");
+        txtCodigoObjeto.setText("");
+
     }
     private ObjetoDto crearObjetoDto() {
         return new ObjetoDto(
@@ -115,11 +165,15 @@ public class ObjetoViewController {
             return true;
         }
     }
-    private void limpiarCampos() {
-        txtNombreObjeto.setText("");
-        txtCodigoObjeto.setText("");
 
+
+    private void mostrarInformacionObjeto(ObjetoDto objetoSeleccionado) {
+        if(objetoSeleccionado != null){
+            txtNombreObjeto.setText(objetoSeleccionado.nombreObjeto());
+            txtCodigoObjeto.setText(objetoSeleccionado.idObjeto());
+        }
     }
+
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
         Alert aler = new Alert(alertType);
         aler.setTitle(titulo);
@@ -127,6 +181,7 @@ public class ObjetoViewController {
         aler.setContentText(contenido);
         aler.showAndWait();
     }
+
 
     private boolean mostrarMensajeConfirmacion(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -140,6 +195,8 @@ public class ObjetoViewController {
             return false;
         }
     }
+
+
    /** private void eliminarObjeto() {
         if(ObjetoSeleccionado != null){
             if(objetoController.eliminarObjeto(ObjetoSeleccionado.idObjeto())){

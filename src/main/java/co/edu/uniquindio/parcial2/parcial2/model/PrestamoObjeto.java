@@ -24,27 +24,26 @@ public class PrestamoObjeto {
                                 String email,
                                 String telefonoFijo,
                                 String telefonoCelular,
-                                String direccion){
+                                String direccion) {
         Cliente clienteEncontrado = obtenerCliente(cedula);
-        if(clienteEncontrado == null){
+        if (clienteEncontrado == null) {
             Cliente cliente = getBuildCliente(cedula, nombre, apellido, email, telefonoFijo, telefonoCelular, direccion);
             getListaClientes().add(cliente);
             return true;
-        }else{
-            return  false;
+        } else {
+            return false;
         }
     }
 
-    public boolean crearCliente(Cliente nuevoCliente){
+    public boolean crearCliente(Cliente nuevoCliente) {
         Cliente clienteEncontrado = obtenerCliente(nuevoCliente.getCedula());
-        if(clienteEncontrado == null){
+        if (clienteEncontrado == null) {
             getListaClientes().add(nuevoCliente);
             return true;
-        }else{
-            return  false;
+        } else {
+            return false;
         }
     }
-
 
 
     private Cliente getBuildCliente(String cedula, String nombre, String apellido, String email, String telefonoFijo, String telefonoCelular, String direccion) {
@@ -61,8 +60,8 @@ public class PrestamoObjeto {
 
     private Cliente obtenerCliente(String cedula) {
         Cliente cliente = null;
-        for (Cliente cliente1: getListaClientes()) {
-            if(cliente1.getCedula().equalsIgnoreCase(cedula)){
+        for (Cliente cliente1 : getListaClientes()) {
+            if (cliente1.getCedula().equalsIgnoreCase(cedula)) {
                 cliente = cliente1;
                 break;
             }
@@ -91,9 +90,9 @@ public class PrestamoObjeto {
     public String obtenerClientesPorCiudad(String ciudad) {
         String resultado = "";
 
-        for (Cliente cliente: getListaClientes()) {
-            if(cliente.getDireccion().equalsIgnoreCase(ciudad)){
-                resultado = resultado + cliente.toString()+ "\n";
+        for (Cliente cliente : getListaClientes()) {
+            if (cliente.getDireccion().equalsIgnoreCase(ciudad)) {
+                resultado = resultado + cliente.toString() + "\n";
             }
         }
 
@@ -102,10 +101,10 @@ public class PrestamoObjeto {
 
     public boolean eliminarCliente(String cedula) {
         Cliente clienteEncontrado = obtenerCliente(cedula);
-        if(clienteEncontrado !=null){
+        if (clienteEncontrado != null) {
             getListaClientes().remove(clienteEncontrado);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -115,24 +114,37 @@ public class PrestamoObjeto {
         return listaObjetos;
     }
 
-    public boolean crearObjeto(Objeto nuevoObjeto){
+    public boolean crearObjeto(Objeto nuevoObjeto) {
         Objeto objetoEncontrado = obtenerObjeto(nuevoObjeto.getIdObjeto());
-        if(objetoEncontrado == null){
+        if (objetoEncontrado == null) {
             getListaObjetos().add(nuevoObjeto);
             return true;
-        }else{
-            return  false;
+        } else {
+            return false;
         }
     }
+
     private Objeto obtenerObjeto(String idObjeto) {
-        Objeto objeto= null;
-        for (Objeto objeto1: getListaObjetos()) {
-            if(objeto1.getIdObjeto().equalsIgnoreCase(idObjeto)){
-                objeto = objeto1;
-                break;
+        for (Objeto objeto1 : getListaObjetos()) {
+            System.out.println("Comparando con ID: " + objeto1.getIdObjeto()); // <- esto imprime los IDs que tiene la lista
+            String id = objeto1.getIdObjeto();
+            if (id != null && id.equalsIgnoreCase(idObjeto)) {
+                System.out.println("¡Encontrado!");
+                return objeto1;
             }
         }
+        System.out.println("No se encontró el objeto con ID: " + idObjeto);
+        return null;
+    }
 
-        return objeto;
+
+    public boolean eliminarObjeto(String idObjeto) {
+        Objeto objetoEncontrado = obtenerObjeto(idObjeto);
+        if (objetoEncontrado != null) {
+            getListaObjetos().remove(objetoEncontrado);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

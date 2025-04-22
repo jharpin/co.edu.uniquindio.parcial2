@@ -19,7 +19,5 @@ public class ClienteController {
         return modelFactory.agregarCliente(clienteDto);
     }
 
-    public boolean eliminarCliente(String cedula) {
-        return modelFactory.eliminarCliente(cedula);
-    }
+    public boolean eliminarCliente(String cedula) {return modelFactory.eliminarCliente(cedula);}
 }

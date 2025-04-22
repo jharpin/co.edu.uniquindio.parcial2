@@ -17,7 +17,6 @@ import static co.edu.uniquindio.parcial2.parcial2.utils.PrestamoConstantes.*;
 
 public class ClienteViewController {
 
-
     ClienteController clienteController;
     ObservableList<ClienteDto> listaClientes = FXCollections.observableArrayList();
     ClienteDto clienteSeleccionado;

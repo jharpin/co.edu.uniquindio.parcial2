@@ -1,7 +1,6 @@
 package co.edu.uniquindio.parcial2.parcial2.controller;
 
 import co.edu.uniquindio.parcial2.parcial2.factory.ModelFactory;
-import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ClienteDto;
 import co.edu.uniquindio.parcial2.parcial2.mapping.dto.ObjetoDto;
 
 import java.util.List;
@@ -19,7 +18,5 @@ public class ObjetoController {
         return modelFactory.agregarObjeto(objetoDto);
     }
 
-    public boolean eliminarobjeto(String idObjeto) {
-        return modelFactory.eliminarObjeto(idObjeto);
-    }
+    public boolean eliminarObjeto(String idObjeto) {return modelFactory.eliminarObjeto(idObjeto);}
 }
