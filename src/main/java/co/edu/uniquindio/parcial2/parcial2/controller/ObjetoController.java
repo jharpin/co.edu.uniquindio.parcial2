@@ -10,6 +10,7 @@ public class ObjetoController {
     public ObjetoController(){
         modelFactory = ModelFactory.getInstancia();
     }
+
     public List<ObjetoDto> obtenerObjetos() {
         return modelFactory.obtenerObjetos();
     }

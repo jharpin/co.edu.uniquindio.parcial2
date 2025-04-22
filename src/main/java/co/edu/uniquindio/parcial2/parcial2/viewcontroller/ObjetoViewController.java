@@ -116,7 +116,7 @@ public class ObjetoViewController {
         ObjetoDto objetoDto = crearObjetoDto();
         if(datosValidos(objetoDto)){
             if(objetoController.agregarObjeto(objetoDto)){
-                listaObjetos.add(objetoDto);
+                listaObjetos.addAll(objetoDto);
                 limpiarCampos();
                 mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
             }else{
@@ -128,16 +128,11 @@ public class ObjetoViewController {
     }
 
     private void eliminarObjeto() {
-        if(objetoSeleccionado != null){
-            System.out.println("Intentando eliminar: " + objetoSeleccionado.idObjeto());
-            if(objetoController.eliminarObjeto(objetoSeleccionado.idObjeto())){
+        if(objetoSeleccionado != null) {
+            if (objetoController.eliminarObjeto(objetoSeleccionado.idObjeto())) {
                 listaObjetos.remove(objetoSeleccionado);
                 limpiarCampos();
-            } else {
-                System.out.println("No se pudo eliminar desde el controller");
             }
-        } else {
-            System.out.println("Ningún objeto seleccionado");
         }
     }
     private void nuevoObjeto() {

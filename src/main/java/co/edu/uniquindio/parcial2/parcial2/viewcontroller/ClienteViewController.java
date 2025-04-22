@@ -86,6 +86,11 @@ public class ClienteViewController {
     }
 
     @FXML
+    void onEliminarCliente(ActionEvent event) {
+        eliminarCliente();
+    }
+
+    @FXML
     void onActualizarCliente(ActionEvent event) {
 
     }
@@ -96,10 +101,6 @@ public class ClienteViewController {
 
     }
 
-    @FXML
-    void onEliminarCliente(ActionEvent event) {
-        eliminarCliente();
-    }
 
     private void initView() {
         initDataBinding();

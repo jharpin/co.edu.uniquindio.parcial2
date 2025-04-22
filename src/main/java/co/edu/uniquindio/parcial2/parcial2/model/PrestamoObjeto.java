@@ -126,14 +126,11 @@ public class PrestamoObjeto {
 
     private Objeto obtenerObjeto(String idObjeto) {
         for (Objeto objeto1 : getListaObjetos()) {
-            System.out.println("Comparando con ID: " + objeto1.getIdObjeto()); // <- esto imprime los IDs que tiene la lista
             String id = objeto1.getIdObjeto();
             if (id != null && id.equalsIgnoreCase(idObjeto)) {
-                System.out.println("¡Encontrado!");
                 return objeto1;
             }
         }
-        System.out.println("No se encontró el objeto con ID: " + idObjeto);
         return null;
     }
 
