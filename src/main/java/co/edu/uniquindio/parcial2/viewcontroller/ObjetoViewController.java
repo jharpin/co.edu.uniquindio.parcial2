@@ -67,7 +67,9 @@ public class ObjetoViewController {
     void onEliminarObjeto(ActionEvent event) {eliminarObjeto();}
 
     @FXML
-    void onActualizarObjeto(ActionEvent event) {actualizarObjeto();}
+    void onActualizarObjeto(ActionEvent event) {
+        //actualizarObjeto();
+    }
 
     @FXML
     void onNuevoObjeto(ActionEvent event) {nuevoObjeto();}
