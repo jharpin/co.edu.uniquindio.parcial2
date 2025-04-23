@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.parcial2.viewcontroller.ObjetoViewController">
+    <children>
+      <SplitPane dividerPositions="0.4525669642857143" layoutX="1.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="701.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="138.0" prefWidth="255.0">
+               <children>
+                    <Label layoutX="14.0" layoutY="75.0" text="Nombre Objeto:" />
+                    <TextField fx:id="txtNombreObjeto" layoutX="110.0" layoutY="71.0" prefWidth="200.0" />
+            
+                    <Label layoutX="396.0" layoutY="75.0" text="Código Objeto:" />
+                    <TextField fx:id="txtCodigoObjeto" layoutX="485.0" layoutY="71.0" prefWidth="200.0" />
+            
+                    <Button fx:id="btnAgregarObjeto" layoutX="556.0" layoutY="168.0" onAction="#onAgregarObjeto" prefHeight="33.0" prefWidth="81.0" text="Agregar" />
+                  <Button fx:id="btnActualizarObjeto" layoutX="334.0" layoutY="168.0" onAction="#onActualizarObjeto" prefHeight="33.0" prefWidth="81.0" text="Actualizar " />
+                  <Button fx:id="btnNuevoObjeto" layoutX="110.0" layoutY="168.0" onAction="#onNuevoObjeto" prefHeight="33.0" prefWidth="66.0" text="Nuevo" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+            
+                                <TableView fx:id="tableObjetos" prefHeight="233.0" prefWidth="699.0">
+                        <columns>
+                            <TableColumn fx:id="tcNombreObjeto" prefWidth="339.99995934963226" text="Nombre" />
+                            <TableColumn fx:id="tcCodigoObjeto" minWidth="0.0" prefWidth="358.6667175292969" text="Código" />
+                        </columns>
+                    </TableView>
+            
+                    <Button fx:id="btnEliminarObjeto" layoutX="587.0" layoutY="247.0" onAction="#onEliminarObjeto" prefHeight="33.0" prefWidth="81.0" text="Eliminar" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+    </children>
+</AnchorPane>
