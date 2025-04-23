@@ -61,33 +61,19 @@ public class ObjetoViewController {
         initView();
     }
     @FXML
-    void onActualizarObjeto(ActionEvent event) {
-        //actualizarObjeto();
-
-    }
+    void onAgregarObjeto(ActionEvent event) {agregarObjeto();}
 
     @FXML
-    void onAgregarObjeto(ActionEvent event) {
-       agregarObjeto();
-
-    }
+    void onEliminarObjeto(ActionEvent event) {eliminarObjeto();}
 
     @FXML
-    void onEliminarObjeto(ActionEvent event) {
-        eliminarObjeto();
-
-    }
-
-
+    void onActualizarObjeto(ActionEvent event) {actualizarObjeto();}
 
     @FXML
-    void onNuevoObjeto(ActionEvent event) {
-
-    }
+    void onNuevoObjeto(ActionEvent event) {nuevoObjeto();}
 
 
     private void initView() {
-        //initDataBinding();
         initDataBinding();
         obtenerObjeto();
         tableObjetos.getItems().clear();
@@ -118,9 +104,9 @@ public class ObjetoViewController {
             if(objetoController.agregarObjeto(objetoDto)){
                 listaObjetos.addAll(objetoDto);
                 limpiarCampos();
-                mostrarMensaje(TITULO_CLIENTE_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
+                mostrarMensaje(TITULO_OBJETO_AGREGADO, HEADER, BODY_CLIENTE_AGREGADO, Alert.AlertType.INFORMATION);
             }else{
-                mostrarMensaje(TITULO_CLIENTE_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
+                mostrarMensaje(TITULO_OBJETO_NO_AGREGADO, HEADER, BODY_CLIENTE_NO_AGREGADO,Alert.AlertType.ERROR);
             }
         }else{
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);

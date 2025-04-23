@@ -91,15 +91,10 @@ public class ClienteViewController {
     }
 
     @FXML
-    void onActualizarCliente(ActionEvent event) {
-
-    }
+    void onActualizarCliente(ActionEvent event) {actualizarCliente();}
 
     @FXML
-    void onNuevoCliente(ActionEvent event) {
-        nuevoCliente();
-
-    }
+    void onNuevoCliente(ActionEvent event) {nuevoCliente();}
 
 
     private void initView() {
@@ -146,6 +141,26 @@ public class ClienteViewController {
         }else{
             //mensaje de notificacion de campos incompletos
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarCliente(){
+        if(clienteSeleccionado != null){
+            ClienteDto clienteActualizado=crearClienteDto();
+            if(datosValidos(clienteActualizado)){
+                if(clienteController.actualizarCliente(clienteActualizado)){
+                    for(ClienteDto cliente: listaClientes){
+                        if(cliente.equals(clienteSeleccionado)){
+                            listaClientes.remove(cliente);
+                            listaClientes.add(clienteActualizado);
+                            break;
+
+                        }
+                    }
+                    mostrarMensaje(CLIENTE_ACTUALIZADO,HEADER,"DATOS ACTUALIZADOS", Alert.AlertType.INFORMATION);
+
+                }else{mostrarMensaje(CLIENTE_NO_ACTUALIZADO,HEADER,"DATOS NO_ACTUALIZADO", Alert.AlertType.ERROR);}
+            }else{mostrarMensaje("DATOS NO COMPLETADOS", HEADER,"DATOS NO COMPLETADOS", Alert.AlertType.ERROR);}
         }
     }
 

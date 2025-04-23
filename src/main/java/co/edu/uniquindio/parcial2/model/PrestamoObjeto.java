@@ -109,6 +109,19 @@ public class PrestamoObjeto {
         }
     }
 
+    public boolean actualizarCliente(Cliente cliente) {
+        Cliente clienteActual = obtenerCliente(cliente.getCedula());
+        if (clienteActual != null) {
+            clienteActual.setNombre(cliente.getNombre());
+            clienteActual.setApellido(cliente.getApellido());
+            clienteActual.setEmail(cliente.getEmail());
+            clienteActual.setDireccion(cliente.getDireccion());
+            return true;
+        }
+        return false;
+
+    }
+
 
     public List<Objeto> getListaObjetos() {
         return listaObjetos;

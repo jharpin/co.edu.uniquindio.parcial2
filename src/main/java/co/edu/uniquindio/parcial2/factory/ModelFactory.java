@@ -48,6 +48,12 @@ public class ModelFactory implements IModelFactoryService {
     }
 
     @Override
+    public boolean actualizarCliente(ClienteDto clinetedto) {
+        Cliente cliente = mapper.clienteDtoToCliente(clinetedto);
+        return prestamoObjeto.actualizarCliente(cliente);
+    }
+
+    @Override
     public boolean eliminarCliente(String cedula) {
         return prestamoObjeto.eliminarCliente(cedula);
     }
