@@ -124,18 +124,19 @@ public class PrestamoObjeto {
         }
     }
 
+
     private Objeto obtenerObjeto(String idObjeto) {
+        Objeto objeto=null;
         for (Objeto objeto1 : getListaObjetos()) {
-            String id = objeto1.getIdObjeto();
-            if (id != null && id.equalsIgnoreCase(idObjeto)) {
-                return objeto1;
+            if (objeto1.getIdObjeto().equalsIgnoreCase(idObjeto)) {
+               objeto = objeto1;
+               break;
             }
         }
-        return null;
+        return objeto;
     }
 
-
-    public boolean eliminarObjeto(String idObjeto) {
+        public boolean eliminarObjeto(String idObjeto) {
         Objeto objetoEncontrado = obtenerObjeto(idObjeto);
         if (objetoEncontrado != null) {
             getListaObjetos().remove(objetoEncontrado);

@@ -27,5 +27,9 @@ public class PrestamoConstantes {
     public static final String TITULO_CLIENTE_ELIMINADO= "Cliente eliminado";
     public static final String BODY_CLIENTE_NO_AGREGADO = "El cliente no se agregro, ya existe";
     public static final String BODY_CLIENTE_AGREGADO = "El cliente se agregro con èxito";
-
+    public static final String TITULO_OBJETO_NO_AGREGADO = "OBJETO no agregado";
+    public static final String TITULO_OBJETO_AGREGADO = "OBJETO agregado";
+    public static final String TITULO_OBJETO_ELIMINADO= "OBJETO eliminado";
+    public static final String BODY_OBJETO_NO_AGREGADO = "El OBJETO no se agregro, ya existe";
+    public static final String BODY_OBJETO_AGREGADO = "El OBJETO se agregro con èxito";
 }
