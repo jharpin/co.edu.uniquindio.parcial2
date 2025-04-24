@@ -68,4 +68,10 @@ public class ModelFactory implements IModelFactoryService {
     public boolean eliminarObjeto(String idObjeto) {
         return prestamoObjeto.eliminarObjeto(idObjeto);
     }
+
+    @Override
+    public boolean actualizarObjeto(ObjetoDto objetoDto) {
+        Objeto objeto = mapper.objetoDtoToObjeto(objetoDto);
+        return prestamoObjeto.actualizarObjeto(objeto);
+    }
 }

@@ -121,6 +121,15 @@ public class PrestamoObjeto {
         return false;
 
     }
+    public boolean actualizarObjeto(Objeto objeto) {
+        Objeto objetoActual=obtenerObjeto(objeto.getIdObjeto());
+        if(objetoActual!=null){
+            objetoActual.setNombreObjeto(objeto.getNombreObjeto());
+            objetoActual.setIdObjeto(objeto.getIdObjeto());
+            return true;
+        }
+        return false;
+    }
 
 
     public List<Objeto> getListaObjetos() {

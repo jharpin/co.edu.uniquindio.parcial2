@@ -67,9 +67,7 @@ public class ObjetoViewController {
     void onEliminarObjeto(ActionEvent event) {eliminarObjeto();}
 
     @FXML
-    void onActualizarObjeto(ActionEvent event) {
-        //actualizarObjeto();
-    }
+    void onActualizarObjeto(ActionEvent event) {actualizarObjeto();}
 
     @FXML
     void onNuevoObjeto(ActionEvent event) {nuevoObjeto();}
@@ -112,6 +110,24 @@ public class ObjetoViewController {
             }
         }else{
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarObjeto() {
+        if(objetoSeleccionado != null){
+            ObjetoDto objetoActualizado = crearObjetoDto();
+            if(datosValidos(objetoActualizado)){
+                if(objetoController.actualizarObjeto(objetoActualizado)){
+                    for(ObjetoDto objeto: listaObjetos){
+                        if(objeto.equals(objetoSeleccionado)){
+                            listaObjetos.remove(objeto);
+                            listaObjetos.add(objetoActualizado);
+                            break;
+                        }
+                    }
+                    mostrarMensaje("OBJETO_ACTUALIZADO",HEADER,"DATOS ACTUALIZADOS",Alert.AlertType.INFORMATION);
+                }else{mostrarMensaje("OBJETO_NO_ACTUALIZADO",HEADER,"DATOS_NO_ACTUALIZADO",Alert.AlertType.ERROR);}
+            }else{mostrarMensaje("DATOS NO COMPLETADOS",HEADER,"DATOS NO COMPLETADOS",Alert.AlertType.ERROR);}
         }
     }
 
@@ -164,7 +180,6 @@ public class ObjetoViewController {
         aler.setContentText(contenido);
         aler.showAndWait();
     }
-
 
     private boolean mostrarMensajeConfirmacion(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

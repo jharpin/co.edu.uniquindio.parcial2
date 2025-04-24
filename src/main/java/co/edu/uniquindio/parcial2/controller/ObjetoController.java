@@ -19,5 +19,9 @@ public class ObjetoController {
         return modelFactory.agregarObjeto(objetoDto);
     }
 
+    public boolean actualizarObjeto(ObjetoDto objetoDto) {
+        return modelFactory.actualizarObjeto(objetoDto);
+    }
+
     public boolean eliminarObjeto(String idObjeto) {return modelFactory.eliminarObjeto(idObjeto);}
 }

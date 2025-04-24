@@ -154,11 +154,9 @@ public class ClienteViewController {
                             listaClientes.remove(cliente);
                             listaClientes.add(clienteActualizado);
                             break;
-
                         }
                     }
                     mostrarMensaje(CLIENTE_ACTUALIZADO,HEADER,"DATOS ACTUALIZADOS", Alert.AlertType.INFORMATION);
-
                 }else{mostrarMensaje(CLIENTE_NO_ACTUALIZADO,HEADER,"DATOS NO_ACTUALIZADO", Alert.AlertType.ERROR);}
             }else{mostrarMensaje("DATOS NO COMPLETADOS", HEADER,"DATOS NO COMPLETADOS", Alert.AlertType.ERROR);}
         }
