@@ -6,29 +6,13 @@ public class ObjetoBuilder {
     protected String nombreObjeto;
     protected String idObjeto;
 
-    public ObjetoBuilder nombre(String nombreObjeto) {
+    public ObjetoBuilder nombreObjeto(String nombreObjeto) {
         this.nombreObjeto = nombreObjeto;
         return this;
     }
     public ObjetoBuilder idObjeto(String idObjeto) {
         this.idObjeto = idObjeto;
         return this;
-    }
-
-    public String getNombreObjeto() {
-        return nombreObjeto;
-    }
-
-    public void setNombreObjeto(String nombreObjeto) {
-        this.nombreObjeto= nombreObjeto;
-    }
-
-    public String getIdObjeto() {
-        return idObjeto;
-    }
-
-    public void setIdObjeto(String idObjeto) {
-        this.idObjeto = idObjeto;
     }
 
     public Objeto build() {

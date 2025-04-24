@@ -1,6 +1,6 @@
 package co.edu.uniquindio.parcial2.utils;
 
-import co.edu.uniquindio.parcial2.model.Cliente;
+import co.edu.uniquindio.parcial2.model.*;
 import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
 
 public class DataUtil {
@@ -34,6 +34,23 @@ public class DataUtil {
                 .email("jsjsj3@gmail.com")
                 .build();
 
+        Objeto objeto = Objeto.builder()
+                .nombreObjeto("carro")
+                .idObjeto("678")
+                .build();
+
+        Objeto objeto1 = Objeto.builder()
+                .nombreObjeto("motos")
+                .idObjeto("777")
+                .build();
+        Objeto objeto2 = Objeto.builder()
+                .idObjeto("888")
+                .nombreObjeto("casas")
+                .build();
+
+        prestamoObjeto.getListaObjetos().add(objeto);
+        prestamoObjeto.getListaObjetos().add(objeto1);
+        prestamoObjeto.getListaObjetos().add(objeto2);
         prestamoObjeto.getListaClientes().add(cliente1);
         prestamoObjeto.getListaClientes().add(cliente2);
         prestamoObjeto.getListaClientes().add(cliente3);

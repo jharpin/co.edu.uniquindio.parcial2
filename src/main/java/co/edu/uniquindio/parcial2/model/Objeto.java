@@ -10,7 +10,7 @@ public class Objeto {
     public Objeto() {
     }
 
-    public Objeto(String nombre, String idObjeto) {
+    public Objeto(String nombreObjeto, String idObjeto) {
         this.nombreObjeto = nombreObjeto;
         this.idObjeto = idObjeto;
     }
