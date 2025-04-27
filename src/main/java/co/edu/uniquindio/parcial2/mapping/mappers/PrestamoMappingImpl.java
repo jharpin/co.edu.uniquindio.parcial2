@@ -2,8 +2,10 @@ package co.edu.uniquindio.parcial2.mapping.mappers;
 
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
 import co.edu.uniquindio.parcial2.mapping.dto.ObjetoDto;
+import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import co.edu.uniquindio.parcial2.model.Cliente;
 import co.edu.uniquindio.parcial2.model.Objeto;
+import co.edu.uniquindio.parcial2.model.Prestamo;
 import co.edu.uniquindio.parcial2.service.IPrestamoMapping;
 
 import java.util.ArrayList;
@@ -58,7 +60,17 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
 
         return listaObjetosDto;
     }
-
+    @Override
+    public List<PrestamoDto> getPrestamoDto(List<Prestamo> listaPrestamo) {
+        if(listaPrestamo == null) {
+            return null;
+        }
+            List<PrestamoDto>listaPrestamosDto=new ArrayList<>(listaPrestamo.size());
+        for (Prestamo prestamo : listaPrestamo) {
+            listaPrestamosDto.add(prestamoToPrestamoDto(prestamo));
+        }
+        return listaPrestamosDto;
+    }
 
     @Override
     public ObjetoDto objetoToObjetoDto(Objeto objeto) {
@@ -76,6 +88,33 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
     }
 
 
+
+    @Override
+    public PrestamoDto prestamoToPrestamoDto(Prestamo prestamo) {
+        return new PrestamoDto(
+                prestamo.getNumeroPrestamo(),
+                prestamo.getFechaPrestamo(),
+                prestamo.getFechaEntrega(),
+                prestamo.getDescripcion(),
+                prestamo.getEmpleadoAsociado(),
+                prestamo.getClienteAsociado(),
+                prestamo.getListaObjetosAsociados(),
+                prestamo.getOwnedByPrestamoUq());
+    }
+
+    @Override
+    public Prestamo prestamoDtoToPrestamo(PrestamoDto prestamoDto) {
+        return Prestamo.builder()
+                .numeroPrestamo(prestamoDto.numeroPrestamo())
+                .fechaPrestamo(prestamoDto.fechaPrestamo())
+                .fechaEntrega(prestamoDto.fechaEntrega())
+                .descripcion(prestamoDto.descripcion())
+                .empleadoAsociado(prestamoDto.empleadoAsociado())
+                .clienteAsociado(prestamoDto.clienteAsociado())
+                .listaObjetosAsociados(prestamoDto.listaObjetosAsociados())
+                .ownedByPrestamoUq(prestamoDto.ownedByPrestamoUq())
+                .build();
+    }
 
 
 }

@@ -1,20 +1,33 @@
 package co.edu.uniquindio.parcial2.model;
 
+import co.edu.uniquindio.parcial2.model.builder.PrestamoBuilder;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Prestamo {
     private String numeroPrestamo;
-    private Date fechaPrestamo;
-    private Date fechaEntrega;
+    private LocalDate fechaPrestamo;
+    private LocalDate fechaEntrega;
     private String descripcion;
     private Empleado empleadoAsociado;
     private Cliente clienteAsociado;
     List<Objeto> listaObjetosAsociados = new ArrayList<>();
     PrestamoObjeto ownedByPrestamoUq;
 
+public Prestamo(String numeroPrestamo, LocalDate fechaPrestamo, LocalDate fechaEntrega, String descripcion,Empleado empleadoAsociado, Cliente clienteAsociado,List<Objeto> listaObjetosAsociados, PrestamoObjeto ownedByPrestamoUq) {
+    this.numeroPrestamo = numeroPrestamo;
+    this.fechaPrestamo = fechaPrestamo;
+    this.fechaEntrega = fechaEntrega;
+    this.descripcion = descripcion;
+    this.empleadoAsociado = empleadoAsociado;
+    this.clienteAsociado = clienteAsociado;
+    this.listaObjetosAsociados = listaObjetosAsociados;
+    this.ownedByPrestamoUq = ownedByPrestamoUq;
 
+}
     public Prestamo() {
     }
 
@@ -26,19 +39,19 @@ public class Prestamo {
         this.numeroPrestamo = numeroPrestamo;
     }
 
-    public Date getFechaPrestamo() {
+    public LocalDate getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(Date fechaPrestamo) {
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public Date getFechaEntrega() {
+    public LocalDate getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
@@ -78,5 +91,8 @@ public class Prestamo {
 
     public void setListaObjetosAsociados(List<Objeto> listaObjetosAsociados) {
         this.listaObjetosAsociados = listaObjetosAsociados;
+    }
+    public static PrestamoBuilder builder() {
+    return new PrestamoBuilder();
     }
 }

@@ -3,6 +3,11 @@ package co.edu.uniquindio.parcial2.utils;
 import co.edu.uniquindio.parcial2.model.*;
 import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
 public class DataUtil {
 
     public static PrestamoObjeto inicializarDatos() {
@@ -48,13 +53,24 @@ public class DataUtil {
                 .nombreObjeto("casas")
                 .build();
 
+
+        Prestamo prestamo1=Prestamo.builder()
+                .numeroPrestamo("1234")
+                .fechaPrestamo(LocalDate.of(2020, 1, 1))
+                .fechaEntrega(LocalDate.of(2020, 1, 3))
+                .clienteAsociado(cliente1)
+                .listaObjetosAsociados(List.of(objeto1))
+                .empleadoAsociado(null)
+                .ownedByPrestamoUq(null)
+                        .build();
+
         prestamoObjeto.getListaObjetos().add(objeto);
         prestamoObjeto.getListaObjetos().add(objeto1);
         prestamoObjeto.getListaObjetos().add(objeto2);
         prestamoObjeto.getListaClientes().add(cliente1);
         prestamoObjeto.getListaClientes().add(cliente2);
         prestamoObjeto.getListaClientes().add(cliente3);
-
+        prestamoObjeto.getListaPrestamos().add(prestamo1);
         return prestamoObjeto;
     }
 }

@@ -130,8 +130,52 @@ public class PrestamoObjeto {
         }
         return false;
     }
+    public boolean actualizarPrestamo(Prestamo prestamo) {
+        Prestamo prestamoActual=obtenerPrestamo(prestamo.getNumeroPrestamo());
+        if(prestamoActual!=null){
+            prestamoActual.setNumeroPrestamo(prestamo.getNumeroPrestamo());
+            prestamoActual.setFechaPrestamo(prestamo.getFechaPrestamo());
+            prestamoActual.setFechaEntrega(prestamo.getFechaEntrega());
+            prestamoActual.setDescripcion(prestamo.getDescripcion());
+            prestamoActual.setClienteAsociado(prestamo.getClienteAsociado());
+            prestamoActual.setListaObjetosAsociados(prestamo.getListaObjetosAsociados());
+            prestamoActual.setEmpleadoAsociado(prestamo.getEmpleadoAsociado());
+            return true;
+        }
+        return false;
+    }
+    public List<Prestamo>getListaPrestamos() {
+        return listaPrestamos;
+    }
+    public boolean crearPrestamo(Prestamo nuevoPrestamo) {
+        Prestamo PrestamoEncontrado= obtenerPrestamo(nuevoPrestamo.getNumeroPrestamo());
+        if (PrestamoEncontrado == null) {
+            getListaPrestamos().add(nuevoPrestamo);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private Prestamo obtenerPrestamo(String numeroPrestamo) {
+        Prestamo prestamo = null;
+        for (Prestamo prestamo1 : getListaPrestamos()) {
+            if (prestamo1.getNumeroPrestamo().equalsIgnoreCase(numeroPrestamo)) {
+                prestamo = prestamo1;
+                break;
+            }
+        }
+        return prestamo;
+    }
 
-
+public boolean eliminarPrestamo(String numeroPrestamo) {
+        Prestamo prestamoEncontrado= obtenerPrestamo(numeroPrestamo);
+        if (prestamoEncontrado != null) {
+            getListaPrestamos().remove(prestamoEncontrado);
+            return true;
+        }else{
+            return false;
+        }
+    }
     public List<Objeto> getListaObjetos() {
         return listaObjetos;
     }
@@ -145,7 +189,6 @@ public class PrestamoObjeto {
             return false;
         }
     }
-
 
     private Objeto obtenerObjeto(String idObjeto) {
         Objeto objeto=null;

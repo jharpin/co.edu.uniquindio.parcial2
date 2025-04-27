@@ -2,9 +2,11 @@ package co.edu.uniquindio.parcial2.factory;
 
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
 import co.edu.uniquindio.parcial2.mapping.dto.ObjetoDto;
+import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import co.edu.uniquindio.parcial2.mapping.mappers.PrestamoMappingImpl;
 import co.edu.uniquindio.parcial2.model.Cliente;
 import co.edu.uniquindio.parcial2.model.Objeto;
+import co.edu.uniquindio.parcial2.model.Prestamo;
 import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
 import co.edu.uniquindio.parcial2.service.IModelFactoryService;
 import co.edu.uniquindio.parcial2.service.IPrestamoMapping;
@@ -41,6 +43,11 @@ public class ModelFactory implements IModelFactoryService {
     }
 
     @Override
+    public List<PrestamoDto> obtenerPrestamos() {
+        return mapper.getPrestamoDto(prestamoObjeto.getListaPrestamos());
+    }
+
+    @Override
     public boolean agregarCliente(ClienteDto clienteDto) {
         Cliente cliente = mapper.clienteDtoToCliente(clienteDto);
         return prestamoObjeto.crearCliente(cliente);
@@ -72,6 +79,22 @@ public class ModelFactory implements IModelFactoryService {
     @Override
     public boolean actualizarObjeto(ObjetoDto objetoDto) {
         Objeto objeto = mapper.objetoDtoToObjeto(objetoDto);
+
         return prestamoObjeto.actualizarObjeto(objeto);
     }
+
+    @Override
+    public boolean agregarPrestamo(PrestamoDto prestamoDto) {
+        Prestamo prestamo = mapper.prestamoDtoToPrestamo(prestamoDto);
+        return prestamoObjeto.crearPrestamo(prestamo);
+    }
+    @Override
+    public boolean eliminarPrestamo(String numeroPrestamo) {return prestamoObjeto.eliminarPrestamo(numeroPrestamo);}
+    @Override
+    public boolean actualizarPrestamo(PrestamoDto prestamoDto) {
+        Prestamo prestamo=mapper.prestamoDtoToPrestamo(prestamoDto);
+        return prestamoObjeto.actualizarPrestamo(prestamo);
+    }
+
+
 }
