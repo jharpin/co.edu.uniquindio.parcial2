@@ -16,7 +16,7 @@ public interface IModelFactoryService {
     boolean actualizarCliente(ClienteDto clinetedto);
     boolean eliminarCliente(String cedula);
     boolean agregarEmpleado();
-    boolean eliminarEmpleado(String cedula);
+    boolean eliminarEmpleado();
     boolean actualizarEmpleado();
     boolean agregarObjeto(ObjetoDto objetoDto);
     boolean eliminarObjeto(String idObjeto);

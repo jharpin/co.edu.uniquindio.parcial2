@@ -68,19 +68,17 @@ public class ModelFactory implements IModelFactoryService {
 
     @Override
     public boolean agregarEmpleado() {
-
-
+        return false;
+    }
     @Override
     public boolean actualizarEmpleado() {
+         return false;
            }
 
     @Override
-    public boolean eliminarEmpleado(String cedula) {
-
+    public boolean eliminarEmpleado() {
+        return false;
     }
-
-
-
 
     @Override
     public boolean agregarObjeto(ObjetoDto objetoDto) {

@@ -24,7 +24,5 @@ public class EmpleadoBuilder {
         this.edad = edad;
         return this;
     }
-    public Empleado build() {
-        return new Empleado(cedula,nombre,apellido,edad);
-    }
+
 }

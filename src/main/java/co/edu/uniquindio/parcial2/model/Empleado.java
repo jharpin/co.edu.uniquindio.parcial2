@@ -10,6 +10,13 @@ public abstract class Empleado extends  Persona{
         super(cedula, nombre, apellido, edad);
     }
     public abstract String getTipo();
+    public PrestamoObjeto getOwnedByPrestamoUq() {
+        return ownedByPrestamoUq;
+    }
+    public void setOwnedByPrestamoUq(PrestamoObjeto ownedByPrestamoUq) {
+        this.ownedByPrestamoUq = ownedByPrestamoUq;
+    }
+
 }
 
 

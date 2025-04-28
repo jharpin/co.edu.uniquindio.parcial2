@@ -22,6 +22,6 @@ public class EmpleadoController {
         return  modelFactory.actualizarEmpleado();
     }
 
-    public boolean eliminarEmpleado(String cedula) {return modelFactory.eliminarEmpleado(cedula);}
+    public boolean eliminarEmpleado(String cedula) {return modelFactory.eliminarEmpleado();}
 
 }
