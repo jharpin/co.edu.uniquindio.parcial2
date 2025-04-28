@@ -65,6 +65,23 @@ public class ModelFactory implements IModelFactoryService {
         return prestamoObjeto.eliminarCliente(cedula);
     }
 
+
+    @Override
+    public boolean agregarEmpleado() {
+
+
+    @Override
+    public boolean actualizarEmpleado() {
+           }
+
+    @Override
+    public boolean eliminarEmpleado(String cedula) {
+
+    }
+
+
+
+
     @Override
     public boolean agregarObjeto(ObjetoDto objetoDto) {
        Objeto objeto = mapper.objetoDtoToObjeto(objetoDto);

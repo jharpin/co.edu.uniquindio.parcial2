@@ -8,12 +8,16 @@ import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import java.util.List;
 
 public interface IModelFactoryService {
+
     List<ClienteDto> obtenerClientes();
     List<ObjetoDto> obtenerObjetos();
     List<PrestamoDto>obtenerPrestamos();
     boolean agregarCliente(ClienteDto clienteDto);
     boolean actualizarCliente(ClienteDto clinetedto);
     boolean eliminarCliente(String cedula);
+    boolean agregarEmpleado();
+    boolean eliminarEmpleado(String cedula);
+    boolean actualizarEmpleado();
     boolean agregarObjeto(ObjetoDto objetoDto);
     boolean eliminarObjeto(String idObjeto);
     boolean actualizarObjeto(ObjetoDto objetoDto);
