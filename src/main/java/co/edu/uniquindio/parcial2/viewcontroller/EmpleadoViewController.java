@@ -8,7 +8,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-public class EmpleadoViewController {
+public class
+EmpleadoViewController {
 
     @FXML
     private ResourceBundle resources;
