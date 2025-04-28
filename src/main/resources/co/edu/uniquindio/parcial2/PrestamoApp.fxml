@@ -101,6 +101,8 @@
             <Tab text="Parcial2">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                   <fx:include source="Administrador.fxml" />
+
                </content>
             </Tab>
         </tabs>
