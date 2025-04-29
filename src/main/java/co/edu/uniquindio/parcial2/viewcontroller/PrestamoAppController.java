@@ -1,6 +1,7 @@
 package co.edu.uniquindio.parcial2.viewcontroller;
 
 import co.edu.uniquindio.parcial2.controller.ClienteController;
+import co.edu.uniquindio.parcial2.controller.ObjetoController;
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
 import java.net.URL;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextField;
 public class PrestamoAppController {
 PrestamoController prestamoController;
 ClienteController clienteController;
+ObjetoController objetoController;
 ObservableList<PrestamoDto> listaPrestamos= FXCollections.observableArrayList();
 PrestamoDto prestamoSeleccionado;
     @FXML
@@ -98,13 +100,16 @@ PrestamoDto prestamoSeleccionado;
     @FXML
     void initialize() {
         prestamoController = new PrestamoController();
+        clienteController = new ClienteController();
+        objetoController = new ObjetoController();
         initView();
-
+        initComboboxes();
+        configurarComboBoxes();
     }
     private void initComboboxes() {
         cmbClientes.setItems(FXCollections.observableArrayList(clienteController.obtenerClientes()));
         // cmbEmpleado.setItems(FXCollections.observableArrayList(empleadoController.obtenerEmpleados()));
-        // cmbObjeto.setItems(FXCollections.observableArrayList(objetoController.obtenerObjetos()));
+       cmbObjeto.setItems(FXCollections.observableArrayList(objetoController.obtenerObjetos()));
     }
     @FXML
     void onActualizarPrestamo(ActionEvent event) {
@@ -150,6 +155,7 @@ PrestamoDto prestamoSeleccionado;
     void onNuevoPrestamo(ActionEvent event) {
     //nuevoPrestamo();
     }
+
 
  private void initView(){
         initDataBinding();
@@ -198,6 +204,28 @@ private void listenerSelection() {
             txtNumeroPrestamo.setText(prestamoSeleccionado.numeroPrestamo());
         }
     }
+    private void configurarComboBoxes() {
+        // Configurar ComboBox de Clientes
+        cmbClientes.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            @Override
+            protected void updateItem(ClienteDto cliente, boolean empty) {
+                super.updateItem(cliente, empty);
+                setText(empty || cliente == null ? null : cliente.nombre()); // ← CAMBIO
+            }
+        });
+        cmbClientes.setButtonCell(cmbClientes.getCellFactory().call(null));
+
+        // Configurar ComboBox de Objetos
+        cmbObjeto.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            @Override
+            protected void updateItem(ObjetoDto objeto, boolean empty) {
+                super.updateItem(objeto, empty);
+                setText(empty || objeto == null ? null : objeto.nombreObjeto()); // ← CAMBIO
+            }
+        });
+        cmbObjeto.setButtonCell(cmbObjeto.getCellFactory().call(null));
+    }
+
 }
 
 
