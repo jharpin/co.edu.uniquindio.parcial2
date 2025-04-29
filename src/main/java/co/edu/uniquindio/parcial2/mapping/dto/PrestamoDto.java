@@ -14,9 +14,19 @@ public record PrestamoDto(
         LocalDate fechaPrestamo,
         LocalDate fechaEntrega,
         String descripcion,
-        Empleado empleadoAsociado,
-        Cliente clienteAsociado,
-        List<Objeto> listaObjetosAsociados,
-        PrestamoObjeto ownedByPrestamoUq
+        EmpleadoDto empleadoAsociado,
+        List<ObjetoDto> listaObjetosAsociados,
+        ClienteDto ownedByPrestamoUq
 ) {
+
+    public String getNombreCliente() {
+        return ownedByPrestamoUq != null ? ownedByPrestamoUq.nombre() : "Sin cliente";
+    }
+
+    public String getNombreObjeto() {
+        return listaObjetosAsociados != null && !listaObjetosAsociados.isEmpty()
+                ? listaObjetosAsociados.get(0).nombreObjeto()
+                : "Sin objeto";
+    }
 }
+

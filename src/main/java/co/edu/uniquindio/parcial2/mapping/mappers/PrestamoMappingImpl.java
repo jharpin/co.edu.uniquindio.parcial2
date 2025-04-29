@@ -62,6 +62,7 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
 
         return listaObjetosDto;
     }
+
     @Override
     public List<PrestamoDto> getPrestamoDto(List<Prestamo> listaPrestamo) {
         if(listaPrestamo == null) {
@@ -88,6 +89,14 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 .idObjeto(objetoDto.idObjeto())
                 .build();
     }
+    private List<Objeto> objetoDtoToObjetoList(List<ObjetoDto> objetosDto) {
+        if (objetosDto == null) return null;
+        List<Objeto> listaObjetos = new ArrayList<>(objetosDto.size());
+        for (ObjetoDto dto : objetosDto) {
+            listaObjetos.add(objetoDtoToObjeto(dto));
+        }
+        return listaObjetos;
+    }
 
 
 
@@ -98,10 +107,11 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 prestamo.getFechaPrestamo(),
                 prestamo.getFechaEntrega(),
                 prestamo.getDescripcion(),
-                prestamo.getEmpleadoAsociado(),
-                prestamo.getClienteAsociado(),
-                prestamo.getListaObjetosAsociados(),
-                prestamo.getOwnedByPrestamoUq());
+                null,
+                //empleadoToEmpleadoDto(prestamo.getEmpleadoAsociado()), // ← Conversión correcta
+                getObjetoDto(prestamo.getListaObjetosAsociados()),     // ← Lista convertida
+                clienteToClienteDto(prestamo.getClienteAsociado())     // ← Conversión correcta
+        );
     }
 
     @Override
@@ -111,10 +121,8 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 .fechaPrestamo(prestamoDto.fechaPrestamo())
                 .fechaEntrega(prestamoDto.fechaEntrega())
                 .descripcion(prestamoDto.descripcion())
-                .empleadoAsociado(prestamoDto.empleadoAsociado())
-                .clienteAsociado(prestamoDto.clienteAsociado())
-                .listaObjetosAsociados(prestamoDto.listaObjetosAsociados())
-                .ownedByPrestamoUq(prestamoDto.ownedByPrestamoUq())
+                .clienteAsociado(clienteDtoToCliente(prestamoDto.ownedByPrestamoUq()))
+                .listaObjetosAsociados(objetoDtoToObjetoList(prestamoDto.listaObjetosAsociados()))
                 .build();
     }
     @Override

@@ -7,6 +7,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import co.edu.uniquindio.parcial2.mapping.dto.*;
 import co.edu.uniquindio.parcial2.controller.ClienteController;
@@ -71,7 +72,7 @@ PrestamoDto prestamoSeleccionado;
     private TableView<PrestamoDto> tablePrestamos;
 
     @FXML
-    private TableColumn<ClienteDto, String> tcClienteAsociado;
+    private TableColumn<PrestamoDto, String> tcClienteAsociado;
 
     @FXML
     private TableColumn<PrestamoDto, String> tcDescripcion;
@@ -89,7 +90,7 @@ PrestamoDto prestamoSeleccionado;
     private TableColumn<PrestamoDto, String> tcNumeroPrestamo;
 
     @FXML
-    private TableColumn<ObjetoDto, String> tcObjeto;
+    private TableColumn<PrestamoDto, String> tcObjeto;
 
     @FXML
     private TextField txtDescripcion;
@@ -113,17 +114,60 @@ PrestamoDto prestamoSeleccionado;
     }
     @FXML
     void onActualizarPrestamo(ActionEvent event) {
-    //actualizarPrestamo();
+        if (prestamoSeleccionado != null) {
+            PrestamoDto actualizado = new PrestamoDto(
+                    txtNumeroPrestamo.getText(),
+                    dataFechaPrestamo.getValue(),
+                    dataFechaEntrega.getValue(),
+                    txtDescripcion.getText(),
+                    null, // Empleado asociado, puedes agregar ComboBox si lo necesitas
+                    List.of(cmbObjeto.getValue()),
+                    cmbClientes.getValue()
+            );
+
+            if (datosValidos(actualizado)) {
+                int index = listaPrestamos.indexOf(prestamoSeleccionado);
+                listaPrestamos.set(index, actualizado);
+                prestamoController.actualizarPrestamo(actualizado);
+                limpiarFormulario();
+            } else {
+                mostrarAlerta("Datos inválidos para actualizar", javafx.scene.control.Alert.AlertType.ERROR);
+            }
+        }
     }
+
 
     @FXML
     void onAgregarPrestamo(ActionEvent event) {
-    //agregarPrestamo();
+        PrestamoDto nuevoPrestamo = new PrestamoDto(
+                txtNumeroPrestamo.getText(),
+                dataFechaPrestamo.getValue(),
+                dataFechaEntrega.getValue(),
+                txtDescripcion.getText(),
+                null,
+                List.of(cmbObjeto.getValue()),
+                cmbClientes.getValue()
+        );
+
+        if (datosValidos(nuevoPrestamo)) {
+            listaPrestamos.add(nuevoPrestamo);
+            prestamoController.agregarPrestamo(nuevoPrestamo);
+            limpiarFormulario();
+        } else {
+            mostrarAlerta("Datos inválidos para el préstamo", javafx.scene.control.Alert.AlertType.ERROR);
+        }
     }
+
 
     @FXML
     void onEliminarPrestamo(ActionEvent event) {
-    //eliminarPrestamo();
+        if (prestamoSeleccionado != null) {
+            listaPrestamos.remove(prestamoSeleccionado);
+            prestamoController.eliminarPrestamo(prestamoSeleccionado.numeroPrestamo());
+            limpiarFormulario();
+        } else {
+            mostrarAlerta("Selecciona un préstamo para eliminar", javafx.scene.control.Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -168,6 +212,10 @@ PrestamoDto prestamoSeleccionado;
         listaPrestamos.addAll(prestamoController.obtenerPrestamos());
  }
 private void initDataBinding(){
+    tcClienteAsociado.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getNombreCliente()));
+    tcObjeto.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getNombreObjeto()));
        tcNumeroPrestamo.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().numeroPrestamo()));
        tcFechaEntrega.setCellValueFactory(cellData->new SimpleObjectProperty<>(cellData.getValue().fechaEntrega()));
        tcFechaPrestamo.setCellValueFactory(cellData->new SimpleObjectProperty<>(cellData.getValue().fechaPrestamo()));
@@ -188,8 +236,7 @@ private void listenerSelection() {
                 prestamoDto.fechaPrestamo().isAfter(LocalDate.now()) ||
                 prestamoDto.fechaEntrega().isBefore(prestamoDto.fechaPrestamo()) ||
                 prestamoDto.descripcion().isBlank() ||
-                prestamoDto.empleadoAsociado() == null ||   // primero verifico que no sea null
-                prestamoDto.empleadoAsociado().getOwnedByPrestamoUq() == null ||
+                //prestamoDto.empleadoAsociado() == null ||  ← COMENTA ESTA LÍNEA TEMPORALMENTE
                 prestamoDto.listaObjetosAsociados().isEmpty() ||
                 prestamoDto.ownedByPrestamoUq() == null) {
             return false;
@@ -224,6 +271,21 @@ private void listenerSelection() {
             }
         });
         cmbObjeto.setButtonCell(cmbObjeto.getCellFactory().call(null));
+    }
+private void limpiarFormulario() {
+    txtNumeroPrestamo.clear();
+    txtDescripcion.clear();
+    dataFechaPrestamo.setValue(null);
+    dataFechaEntrega.setValue(null);
+    cmbClientes.setValue(null);
+    cmbObjeto.setValue(null);
+    prestamoSeleccionado = null;
+}
+    private void mostrarAlerta(String mensaje, javafx.scene.control.Alert.AlertType tipo) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(tipo);
+        alert.setContentText(mensaje);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 
 }
