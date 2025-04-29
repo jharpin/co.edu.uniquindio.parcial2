@@ -1,10 +1,10 @@
 package co.edu.uniquindio.parcial2.model;
 
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.Empleado;
 import co.edu.uniquindio.parcial2.model.builder.PrestamoBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Prestamo {

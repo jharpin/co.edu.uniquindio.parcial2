@@ -1,8 +1,7 @@
-package co.edu.uniquindio.parcial2.controller;
+package co.edu.uniquindio.parcial2.EjemploFactoryMethod.Controller;
 
 import co.edu.uniquindio.parcial2.factory.ModelFactory;
-import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
-import co.edu.uniquindio.parcial2.model.Empleado;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.Empleado;
 
 import java.util.ArrayList;
 import java.util.List;

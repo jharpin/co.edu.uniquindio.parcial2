@@ -12,5 +12,10 @@ module co.edu.uniquindio.parcial2.parcial2 {
     exports co.edu.uniquindio.parcial2.controller;
 
     opens co.edu.uniquindio.parcial2.model to javafx.base;
+    exports co.edu.uniquindio.parcial2.EjemploFactoryMethod.viewContoller;
+    opens co.edu.uniquindio.parcial2.EjemploFactoryMethod.viewContoller;
+    exports co.edu.uniquindio.parcial2.EjemploFactoryMethod.Controller;
+    opens co.edu.uniquindio.parcial2.EjemploFactoryMethod.Controller;
+    opens co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model to javafx.base;
 
 }

@@ -1,8 +1,8 @@
-package co.edu.uniquindio.parcial2.factory;
+package co.edu.uniquindio.parcial2.EjemploFactoryMethod.factory;
 
-import co.edu.uniquindio.parcial2.model.Empleado;
-import co.edu.uniquindio.parcial2.model.EmpleadoPermanente;
-import co.edu.uniquindio.parcial2.model.EmpleadoTemporal;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.Empleado;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.EmpleadoPermanente;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.EmpleadoTemporal;
 
 public class EmpleadoFactory {
     public static Empleado crearEmpleado(String tipo, String cedula, String nombre, String apellido, int edad) {

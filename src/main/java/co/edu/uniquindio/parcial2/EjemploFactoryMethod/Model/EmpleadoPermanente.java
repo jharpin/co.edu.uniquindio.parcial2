@@ -1,4 +1,4 @@
-package co.edu.uniquindio.parcial2.model;
+package co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model;
 
 
 public class EmpleadoPermanente extends Empleado {

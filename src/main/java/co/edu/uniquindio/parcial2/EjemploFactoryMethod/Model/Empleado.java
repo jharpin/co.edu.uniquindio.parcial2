@@ -1,9 +1,9 @@
-package co.edu.uniquindio.parcial2.model;
+package co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model;
 
-import co.edu.uniquindio.parcial2.model.builder.ClienteBuilder;
-import co.edu.uniquindio.parcial2.model.builder.EmpleadoBuilder;
+import co.edu.uniquindio.parcial2.model.Persona;
+import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
 
-public abstract class Empleado extends  Persona{
+public abstract class Empleado extends Persona {
     private PrestamoObjeto ownedByPrestamoUq;
     private String email;
     private String direccion;

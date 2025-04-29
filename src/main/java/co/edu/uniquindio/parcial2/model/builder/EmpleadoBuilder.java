@@ -1,5 +1,5 @@
 package co.edu.uniquindio.parcial2.model.builder;
-import co.edu.uniquindio.parcial2.model.Empleado;
+
 public class EmpleadoBuilder {
     protected String cedula;
     protected String nombre;

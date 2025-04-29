@@ -1,7 +1,7 @@
-package co.edu.uniquindio.parcial2.viewcontroller;
+package co.edu.uniquindio.parcial2.EjemploFactoryMethod.viewContoller;
 
-import co.edu.uniquindio.parcial2.factory.EmpleadoFactory;
-import co.edu.uniquindio.parcial2.model.Empleado;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.factory.EmpleadoFactory;
+import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.Empleado;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
