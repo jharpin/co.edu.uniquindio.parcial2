@@ -4,7 +4,7 @@ public record EmpleadoDto(
         String nombre,
                           String apellido,
                           String cedula,
-                          String email,
+                          String correo,
                           String direccion,
                         String tipoEmpleado
 ) {

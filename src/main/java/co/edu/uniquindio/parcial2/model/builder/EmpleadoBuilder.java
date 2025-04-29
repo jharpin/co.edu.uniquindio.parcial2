@@ -3,20 +3,22 @@ package co.edu.uniquindio.parcial2.model.builder;
 import co.edu.uniquindio.parcial2.model.Empleado;
 
 public class EmpleadoBuilder {
-    protected String cedula;
+
     protected String nombre;
+    protected String cedula;
     protected String apellido;
     protected int edad;
     protected String correo;
     protected String direccioon;
+    protected String tipoEmpleado;
 
-    public EmpleadoBuilder cedula(String cedula) {
-        this.cedula = cedula;
-        return this;
-    }
 
     public EmpleadoBuilder nombre(String nombre) {
         this.nombre = nombre;
+        return this;
+    }
+    public EmpleadoBuilder cedula(String cedula) {
+        this.cedula = cedula;
         return this;
     }
     public EmpleadoBuilder apellido(String apellido) {
@@ -36,8 +38,12 @@ public class EmpleadoBuilder {
         this.direccioon = direccioon;
         return this;
     }
+    public EmpleadoBuilder tipoEmpleado(String tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
+        return this;
+    }
     public Empleado build() {
-        return new Empleado(cedula, nombre, apellido, edad,correo,direccioon);
+        return new Empleado( nombre,cedula, apellido, edad,correo,direccioon, tipoEmpleado);
     }
 
 }

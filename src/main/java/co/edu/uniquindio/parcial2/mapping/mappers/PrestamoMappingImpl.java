@@ -137,18 +137,20 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 empleado.getApellido(),
                 empleado.getCedula(),
                 empleado.getCorreo(),
-                empleado.getDireccion());
+                empleado.getDireccion(),
+                empleado.getTipoEmpleado());
+
     }
 
     @Override
     public Empleado empleadoDtoToEmpleado(EmpleadoDto empleadoDto) {
         return Empleado.builder()
                 .nombre(empleadoDto.nombre())
-                .apellido(empleadoDto.apellido())
                 .cedula(empleadoDto.cedula())
-                .email(empleadoDto.email())
+                .apellido(empleadoDto.apellido())
                 .direccion(empleadoDto.direccion())
-                .tipo(empleadoDto.tipoEmpleado())
+                .correo(empleadoDto.correo())
+                .tipoEmpleado(empleadoDto.tipoEmpleado())
                 .build();
     }
 
