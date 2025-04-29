@@ -14,14 +14,14 @@ public class Empleado extends  Persona {
         super(cedula, nombre, apellido, edad);
         this.correo = correo;
         this.direccion = direccion;
-        this.tipoEmpleado = tipoEmpleado;
+        this.tipoEmpleado=tipoEmpleado;
     }
 
     public Empleado() {
     }
 
-    public static Empleado builder() {
-        return new Empleado();
+    public static EmpleadoBuilder builder(){
+        return new EmpleadoBuilder();
     }
 
     public PrestamoObjeto getOwnedByPrestamoUq() {
@@ -52,4 +52,4 @@ public class Empleado extends  Persona {
         this.tipoEmpleado = tipoEmpleado;
     }
 
-}
+ }

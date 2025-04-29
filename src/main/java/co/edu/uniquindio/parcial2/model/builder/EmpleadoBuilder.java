@@ -34,7 +34,7 @@ public class EmpleadoBuilder {
         this.correo= correo;
         return this;
     }
-    public EmpleadoBuilder direccioon(String direccioon) {
+    public EmpleadoBuilder direccion(String direccioon) {
         this.direccioon = direccioon;
         return this;
     }
