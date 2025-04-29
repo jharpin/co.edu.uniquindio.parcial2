@@ -66,15 +66,6 @@ public class DataUtil {
                 .ownedByPrestamoUq(null)
                         .build();
 
-        Empleado empleado1 = new Empleado.builder();
-                    .cedula("1001")
-                    .nombre("Juan")
-                    .apellido("Perez")
-                    .direccion("Quimbaya")
-                    .telefono("3123123")
-                    .email("juan@gmail.com")
-                    .build();
-
 
         prestamoObjeto.getListaObjetos().add(objeto);
         prestamoObjeto.getListaObjetos().add(objeto1);

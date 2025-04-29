@@ -1,9 +1,11 @@
 package co.edu.uniquindio.parcial2.mapping.mappers;
 
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
+import co.edu.uniquindio.parcial2.mapping.dto.EmpleadoDto;
 import co.edu.uniquindio.parcial2.mapping.dto.ObjetoDto;
 import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import co.edu.uniquindio.parcial2.model.Cliente;
+import co.edu.uniquindio.parcial2.model.Empleado;
 import co.edu.uniquindio.parcial2.model.Objeto;
 import co.edu.uniquindio.parcial2.model.Prestamo;
 import co.edu.uniquindio.parcial2.service.IPrestamoMapping;
@@ -113,6 +115,40 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 .clienteAsociado(prestamoDto.clienteAsociado())
                 .listaObjetosAsociados(prestamoDto.listaObjetosAsociados())
                 .ownedByPrestamoUq(prestamoDto.ownedByPrestamoUq())
+                .build();
+    }
+    @Override
+    public List<EmpleadoDto> getEmpleadosDto(List<Empleado> listaEmpleados) {
+        if (listaEmpleados == null) {
+            return null;
+        }
+        List<EmpleadoDto> listaEmpleadosDto = new ArrayList<>(listaEmpleados.size());
+        for (Empleado empleado : listaEmpleados) {
+            listaEmpleadosDto.add(empleadoToEmpleadoDto(empleado));
+        }
+
+        return listaEmpleadosDto;
+    }
+
+    @Override
+    public EmpleadoDto empleadoToEmpleadoDto(Empleado empleado) {
+        return new EmpleadoDto(
+                empleado.getNombre(),
+                empleado.getApellido(),
+                empleado.getCedula(),
+                empleado.getCorreo(),
+                empleado.getDireccion());
+    }
+
+    @Override
+    public Empleado empleadoDtoToEmpleado(EmpleadoDto empleadoDto) {
+        return Empleado.builder()
+                .nombre(empleadoDto.nombre())
+                .apellido(empleadoDto.apellido())
+                .cedula(empleadoDto.cedula())
+                .email(empleadoDto.email())
+                .direccion(empleadoDto.direccion())
+                .tipo(empleadoDto.tipoEmpleado())
                 .build();
     }
 

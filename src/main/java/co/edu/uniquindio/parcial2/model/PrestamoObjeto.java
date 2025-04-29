@@ -212,50 +212,7 @@ public boolean eliminarPrestamo(String numeroPrestamo) {
             return false;
         }
     }
-    /*
-  public boolean agregarEmpleado(String tipo, String cedula, String nombre, String apellido, int edad) {
-      Empleado empleadoEncontrado = buscarEmpleado(cedula);
-      if (empleadoEncontrado == null) {
-          Empleado empleado = EmpleadoFactory.crearEmpleado(tipo, cedula, nombre, apellido, edad);
-          listaEmpleados.add(empleado);
-          return true;
-      } else {
-          return false;
-      }
-  }
 
-  // Buscar empleado
-  public Empleado buscarEmpleado(String cedula) {
-      for (EmpleadoController empleado : listaEmpleados) {
-          if (empleado.getCedula().equalsIgnoreCase(cedula)) {
-              return empleado;
-          }
-      }
-      return null;
-  }
-
-  // Actualizar empleado
-  public boolean actualizarEmpleado(String cedula, String nuevoNombre, String nuevoApellido, int nuevaEdad) {
-      Empleado empleado = buscarEmpleado(cedula);
-      if (empleado != null) {
-          empleado.setNombre(nuevoNombre);
-          empleado.setApellido(nuevoApellido);
-          empleado.setEdad(nuevaEdad);
-          return true;
-      }
-      return false;
-  }
-
-  // Eliminar empleado
-  public boolean eliminarEmpleado(String cedula) {
-      Empleado empleado = buscarEmpleado(cedula);
-      if (empleado != null) {
-          listaEmpleados.remove(empleado);
-          return true;
-      }
-      return false;
-  }
-*/
     // Listar empleados
     public List<EmpleadoController> listarEmpleados() {
         return listaEmpleados;
