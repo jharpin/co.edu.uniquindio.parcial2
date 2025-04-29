@@ -28,5 +28,8 @@ public record PrestamoDto(
                 ? listaObjetosAsociados.get(0).nombreObjeto()
                 : "Sin objeto";
     }
+    public String getNombreEmpleado() {
+        return empleadoAsociado() != null ? empleadoAsociado().nombre() : "";
+    }
 }
 

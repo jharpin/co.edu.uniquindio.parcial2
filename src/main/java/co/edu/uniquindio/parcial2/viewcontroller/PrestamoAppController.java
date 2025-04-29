@@ -1,7 +1,6 @@
 package co.edu.uniquindio.parcial2.viewcontroller;
 
-import co.edu.uniquindio.parcial2.controller.ClienteController;
-import co.edu.uniquindio.parcial2.controller.ObjetoController;
+import co.edu.uniquindio.parcial2.controller.*;
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
 import java.net.URL;
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import co.edu.uniquindio.parcial2.mapping.dto.*;
 import co.edu.uniquindio.parcial2.controller.ClienteController;
-import co.edu.uniquindio.parcial2.controller.PrestamoController;
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
 import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import co.edu.uniquindio.parcial2.model.Prestamo;
@@ -35,6 +33,7 @@ ClienteController clienteController;
 ObjetoController objetoController;
 ObservableList<PrestamoDto> listaPrestamos= FXCollections.observableArrayList();
 PrestamoDto prestamoSeleccionado;
+EmpleadoController empleadoController;
     @FXML
     private ResourceBundle resources;
 
@@ -57,7 +56,7 @@ PrestamoDto prestamoSeleccionado;
     private ComboBox<ClienteDto> cmbClientes;
 
     @FXML
-    private ComboBox<?> cmbEmpleado;
+    private ComboBox<EmpleadoDto> cmbEmpleado;
 
     @FXML
     private ComboBox<ObjetoDto> cmbObjeto;
@@ -78,7 +77,7 @@ PrestamoDto prestamoSeleccionado;
     private TableColumn<PrestamoDto, String> tcDescripcion;
 
     @FXML
-    private TableColumn<?, String> tcEmpleadoAsociado;
+    private TableColumn<PrestamoDto, String> tcEmpleadoAsociado;
 
     @FXML
     private TableColumn<PrestamoDto, LocalDate> tcFechaEntrega;
@@ -103,13 +102,14 @@ PrestamoDto prestamoSeleccionado;
         prestamoController = new PrestamoController();
         clienteController = new ClienteController();
         objetoController = new ObjetoController();
+        empleadoController = new EmpleadoController();
         initView();
         initComboboxes();
         configurarComboBoxes();
     }
     private void initComboboxes() {
         cmbClientes.setItems(FXCollections.observableArrayList(clienteController.obtenerClientes()));
-        // cmbEmpleado.setItems(FXCollections.observableArrayList(empleadoController.obtenerEmpleados()));
+        cmbEmpleado.setItems(FXCollections.observableArrayList(empleadoController.obtenerEmpleados()));
        cmbObjeto.setItems(FXCollections.observableArrayList(objetoController.obtenerObjetos()));
     }
     @FXML
@@ -120,7 +120,7 @@ PrestamoDto prestamoSeleccionado;
                     dataFechaPrestamo.getValue(),
                     dataFechaEntrega.getValue(),
                     txtDescripcion.getText(),
-                    null, // Empleado asociado, puedes agregar ComboBox si lo necesitas
+                    cmbEmpleado.getValue(),
                     List.of(cmbObjeto.getValue()),
                     cmbClientes.getValue()
             );
@@ -144,7 +144,7 @@ PrestamoDto prestamoSeleccionado;
                 dataFechaPrestamo.getValue(),
                 dataFechaEntrega.getValue(),
                 txtDescripcion.getText(),
-                null,
+                cmbEmpleado.getValue(),
                 List.of(cmbObjeto.getValue()),
                 cmbClientes.getValue()
         );
@@ -216,12 +216,16 @@ private void initDataBinding(){
             new SimpleStringProperty(cellData.getValue().getNombreCliente()));
     tcObjeto.setCellValueFactory(cellData ->
             new SimpleStringProperty(cellData.getValue().getNombreObjeto()));
-       tcNumeroPrestamo.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().numeroPrestamo()));
-       tcFechaEntrega.setCellValueFactory(cellData->new SimpleObjectProperty<>(cellData.getValue().fechaEntrega()));
-       tcFechaPrestamo.setCellValueFactory(cellData->new SimpleObjectProperty<>(cellData.getValue().fechaPrestamo()));
-       tcDescripcion.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().descripcion()));
-
-
+    tcNumeroPrestamo.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().numeroPrestamo()));
+    tcFechaEntrega.setCellValueFactory(cellData ->
+            new SimpleObjectProperty<>(cellData.getValue().fechaEntrega()));
+    tcFechaPrestamo.setCellValueFactory(cellData ->
+            new SimpleObjectProperty<>(cellData.getValue().fechaPrestamo()));
+    tcDescripcion.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().descripcion()));
+    tcEmpleadoAsociado.setCellValueFactory(cellData ->
+            new SimpleStringProperty(cellData.getValue().getNombreEmpleado()));
 
 }
 private void listenerSelection() {
@@ -236,7 +240,7 @@ private void listenerSelection() {
                 prestamoDto.fechaPrestamo().isAfter(LocalDate.now()) ||
                 prestamoDto.fechaEntrega().isBefore(prestamoDto.fechaPrestamo()) ||
                 prestamoDto.descripcion().isBlank() ||
-                //prestamoDto.empleadoAsociado() == null ||  ← COMENTA ESTA LÍNEA TEMPORALMENTE
+                prestamoDto.empleadoAsociado() == null ||
                 prestamoDto.listaObjetosAsociados().isEmpty() ||
                 prestamoDto.ownedByPrestamoUq() == null) {
             return false;
@@ -257,7 +261,7 @@ private void listenerSelection() {
             @Override
             protected void updateItem(ClienteDto cliente, boolean empty) {
                 super.updateItem(cliente, empty);
-                setText(empty || cliente == null ? null : cliente.nombre()); // ← CAMBIO
+                setText(empty || cliente == null ? null : cliente.nombre());
             }
         });
         cmbClientes.setButtonCell(cmbClientes.getCellFactory().call(null));
@@ -267,10 +271,20 @@ private void listenerSelection() {
             @Override
             protected void updateItem(ObjetoDto objeto, boolean empty) {
                 super.updateItem(objeto, empty);
-                setText(empty || objeto == null ? null : objeto.nombreObjeto()); // ← CAMBIO
+                setText(empty || objeto == null ? null : objeto.nombreObjeto());
             }
         });
         cmbObjeto.setButtonCell(cmbObjeto.getCellFactory().call(null));
+
+        // Configurar ComboBox de Empleados
+        cmbEmpleado.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            @Override
+            protected void updateItem(EmpleadoDto empleado, boolean empty) {
+                super.updateItem(empleado, empty);
+                setText(empty || empleado == null ? null : empleado.nombre()); // ← Aquí está el cambio
+            }
+        });
+        cmbEmpleado.setButtonCell(cmbEmpleado.getCellFactory().call(null));
     }
 private void limpiarFormulario() {
     txtNumeroPrestamo.clear();
