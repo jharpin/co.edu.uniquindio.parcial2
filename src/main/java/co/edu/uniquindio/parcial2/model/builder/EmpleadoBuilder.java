@@ -5,12 +5,12 @@ import co.edu.uniquindio.parcial2.model.Empleado;
 public class EmpleadoBuilder {
 
     protected String nombre;
-    protected String cedula;
     protected String apellido;
+    protected String cedula;
     protected int edad;
     protected String correo;
     protected String direccioon;
-    protected String tipoEmpleado;
+
 
 
     public EmpleadoBuilder nombre(String nombre) {
@@ -40,9 +40,15 @@ public class EmpleadoBuilder {
     }
 
     public Empleado build() {
-        return new Empleado( nombre,cedula, apellido, edad,correo,direccioon );
-    }
+        return new Empleado(// 1. cedula
+                nombre,       // 2. nombre
+                apellido,     // 3. apellido
+                cedula,
+                edad,         // 4. edad
+                correo,       // 5. correo
+                direccioon    // 6. direccion
+        );
+    }}
 
-}
 
 

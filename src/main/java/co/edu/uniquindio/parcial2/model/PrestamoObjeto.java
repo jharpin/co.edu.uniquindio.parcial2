@@ -1,7 +1,7 @@
 package co.edu.uniquindio.parcial2.model;
 
 
-import co.edu.uniquindio.parcial2.controller.EmpleadoController;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -113,11 +113,11 @@ public class EmpleadoViewController {
     private void obtenerEmpleados() {listaempleados.addAll(empleadoController.obtenerEmpleados());}
 
     private void initDataBinding() {
-        tcNombre.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().nombre()));
-        tcApellido.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().apellido()));
-        tcCedula.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().cedula()));
-        tcEmail.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().correo()));
-        tcDireccion.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().direccion()));
+        tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
+        tcApellido.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().apellido()));
+        tcCedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedula()));
+        tcEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().correo()));
+        tcDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().direccion()));
         tcEdad.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().edad()).asObject());
     }
     private void listenerSelection() {
@@ -185,10 +185,12 @@ public class EmpleadoViewController {
                 txtNombre.getText(),
                 txtApellido.getText(),
                 txtCedula.getText(),
-                txtdireccion.getText(),
                 txtEmail.getText(),
-                Integer.parseInt(txtEdad.getText()) );
+                txtdireccion.getText(),
+                Integer.parseInt(txtEdad.getText())
+        );
     }
+
     private boolean datosValidos(EmpleadoDto empleadoDto) {
         if(empleadoDto.nombre().isBlank()||
         empleadoDto.apellido().isBlank()||
