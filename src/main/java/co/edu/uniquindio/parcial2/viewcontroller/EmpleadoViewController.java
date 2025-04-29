@@ -83,10 +83,11 @@ public class EmpleadoViewController {
     void initialize() {
     empleadoController=new EmpleadoController();
     initView();
+    restringirEdadSoloNumeros();
     }
     @FXML
     void onActualizarEmpleado(ActionEvent event) {
-    //ActualizarEmpleado();
+        actualizarEmpleado();
     }
 
     @FXML
@@ -95,8 +96,7 @@ public class EmpleadoViewController {
     }
 
     @FXML
-    void onEliminarEmpleado(ActionEvent event) {
-    //EliminarEmpleado();
+    void onEliminarEmpleado(ActionEvent event) {eliminarEmpleado();
     }
 
     @FXML
@@ -138,6 +138,34 @@ public class EmpleadoViewController {
             }
         }else{
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+    private void actualizarEmpleado() {
+        if (empleadoSeleccionado!=null){
+            EmpleadoDto empleadoActualizado=crearEmpleadoDto();
+            if(datosValidos(empleadoActualizado)) {
+                if(empleadoController.actualizarEmpleado(empleadoActualizado)) {
+                    for(EmpleadoDto empleado:listaempleados){
+                        if(empleado.equals(empleadoSeleccionado)) {
+                            listaempleados.remove(empleado);
+                            listaempleados.add(empleadoActualizado);
+                            break;
+                        }
+                    }
+                    mostrarMensaje("Empleado Actualizado",HEADER,"Empleado Actualizado",Alert.AlertType.INFORMATION);
+                }else{mostrarMensaje("EMPLEADO NO ACTUALIZADO",HEADER,"Empleado NO ACTUALIZADO",Alert.AlertType.ERROR);}
+            }else{mostrarMensaje("DATOS NO COMPLETADOS",HEADER,"DATOS NO COMPLETADOS",Alert.AlertType.ERROR);}
+        }
+    }
+    private void eliminarEmpleado() {
+        if(empleadoSeleccionado!=null) {
+            if(empleadoController.eliminarEmpleado(empleadoSeleccionado.cedula())){
+                listaempleados.remove(empleadoSeleccionado);
+                limpiarCampos();
+                mostrarMensaje("Empleado eliminado",HEADER,"empleado eliminado",Alert.AlertType.INFORMATION);
+            }else{
+                mostrarMensaje("empleado no eliminado",HEADER,"empleado no eliminado",Alert.AlertType.ERROR);
+            }
         }
     }
     private void nuevoEmpleado() {
@@ -190,5 +218,16 @@ public class EmpleadoViewController {
         aler.setHeaderText(header);
         aler.setContentText(contenido);
         aler.showAndWait();
+    }
+
+    private void restringirEdadSoloNumeros() {
+        txtEdad.setTextFormatter(new TextFormatter<>(change -> {
+            String nuevoTexto = change.getControlNewText();
+            if (nuevoTexto.matches("\\d*")) {
+                return change; // Permite solo números
+            } else {
+                return null; // Rechaza letras o símbolos
+            }
+        }));
     }
 }

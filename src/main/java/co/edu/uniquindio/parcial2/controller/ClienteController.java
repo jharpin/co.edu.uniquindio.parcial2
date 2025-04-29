@@ -1,8 +1,6 @@
 package co.edu.uniquindio.parcial2.controller;
-
 import co.edu.uniquindio.parcial2.factory.ModelFactory;
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
-
 import java.util.List;
 
 public class ClienteController {
