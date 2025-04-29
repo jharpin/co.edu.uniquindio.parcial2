@@ -48,7 +48,7 @@ public class EmpleadoViewController {
     private TableColumn<Empleado, String> tcDireccion;
 
     @FXML
-    private TableColumn<Empleado, String> tcDireccion1; // **OJO** debes corregir esto en tu FXML si puedes
+    private TableColumn<Empleado, String>   tcTipoEmpleado;
 
     @FXML
     private TableColumn<Empleado, String> tcEmail;
@@ -108,6 +108,9 @@ public class EmpleadoViewController {
         tcApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));  // Debes tener getter de email
         tcDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion")); // Debes tener getter de direccion
+        tcTipoEmpleado.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTipo())
+        );
     }
 
     @FXML
@@ -133,8 +136,8 @@ public class EmpleadoViewController {
             );
 
             // 🔵 Aquí tendrías que setear el email y dirección manualmente si Empleado permite setEmail y setDireccion
-            // empleado.setEmail(email);
-            // empleado.setDireccion(direccion);
+            empleado.setEmail(email);
+             empleado.setDireccion(direccion);
 
             listaEmpleados.add(empleado);
             limpiarCampos();
