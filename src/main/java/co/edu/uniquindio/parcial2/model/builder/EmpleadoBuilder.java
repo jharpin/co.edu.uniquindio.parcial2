@@ -38,12 +38,9 @@ public class EmpleadoBuilder {
         this.direccioon = direccioon;
         return this;
     }
-    public EmpleadoBuilder tipoEmpleado(String tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
-        return this;
-    }
+
     public Empleado build() {
-        return new Empleado( nombre,cedula, apellido, edad,correo,direccioon, tipoEmpleado);
+        return new Empleado( nombre,cedula, apellido, edad,correo,direccioon );
     }
 
 }

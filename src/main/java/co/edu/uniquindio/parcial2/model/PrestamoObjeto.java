@@ -1,7 +1,7 @@
 package co.edu.uniquindio.parcial2.model;
 
 
-import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Controller.EmpleadoController;
+import co.edu.uniquindio.parcial2.controller.EmpleadoController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,7 @@ import java.util.List;
 public class PrestamoObjeto {
 
     List<Cliente> listaClientes = new ArrayList<>();
-    List<EmpleadoController> listaEmpleados = new ArrayList<>();
-    List<Empleado>listaEmpleados1 = new ArrayList<>();
+    List<Empleado>listaEmpleados = new ArrayList<>();
     List<Objeto> listaObjetos = new ArrayList<>();
     List<Prestamo> listaPrestamos = new ArrayList<>();
 
@@ -78,6 +77,7 @@ public class PrestamoObjeto {
         return listaClientes;
     }
 
+
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
@@ -122,8 +122,8 @@ public class PrestamoObjeto {
             return true;
         }
         return false;
-
     }
+
     public boolean actualizarObjeto(Objeto objeto) {
         Objeto objetoActual=obtenerObjeto(objeto.getIdObjeto());
         if(objetoActual!=null){
@@ -193,6 +193,7 @@ public boolean eliminarPrestamo(String numeroPrestamo) {
         }
     }
 
+
     private Objeto obtenerObjeto(String idObjeto) {
         Objeto objeto=null;
         for (Objeto objeto1 : getListaObjetos()) {
@@ -213,31 +214,47 @@ public boolean eliminarPrestamo(String numeroPrestamo) {
             return false;
         }
     }
+    public List<Empleado> getListaEmpleados() {return listaEmpleados;}
 
-    // Listar empleados
-   public List<EmpleadoController> listarEmpleados() {
-        return listaEmpleados;
+    public boolean eliminarEmpleado(String cedula) {
+        Empleado empleadoEncontrado=obtenerEmpleado(cedula);
+        if (empleadoEncontrado != null) {
+            getListaEmpleados().remove(empleadoEncontrado);
+            return true;
+        }else{
+            return false;
+        }
     }
-
-    // Getter y Setter de listaEmpleados
-    public List<EmpleadoController> getListaEmpleados() {
-        return listaEmpleados;
+    private Empleado obtenerEmpleado(String cedula) {
+        Empleado empleado=null;
+        for(Empleado empleado1:getListaEmpleados()){
+            if(empleado1.getCedula().equalsIgnoreCase(cedula)){
+                empleado = empleado1;
+                break;
+            }
+        }
+        return empleado;
     }
-
-
-
-
-    public List<Empleado> listarEmpleados1() {
-        return listaEmpleados1;
+    public boolean crearEmpleado(Empleado nuevoEmpleado) {
+        Empleado empleadoEncontrado = obtenerEmpleado(nuevoEmpleado.getCedula());
+        if (empleadoEncontrado == null) {
+            getListaEmpleados().add(nuevoEmpleado);
+            return true;
+        }else{
+            return false;
+        }
     }
-
-    // Getter y Setter de listaEmpleados
-    public List<Empleado> getListaEmpleados1() {
-        return listaEmpleados1;
+    public boolean actualizarEmpleado(Empleado empleado) {
+        Empleado empleadoActual = obtenerEmpleado(empleado.getCedula());
+        if (empleadoActual != null) {
+            empleadoActual.setNombre(empleado.getNombre());
+            empleadoActual.setApellido(empleado.getApellido());
+            empleadoActual.setEdad(empleado.getEdad());
+            empleadoActual.setDireccion(empleado.getDireccion());
+            empleadoActual.setCedula(empleado.getCedula());
+            empleadoActual.setCorreo(empleado.getCorreo());
+            return true;
+        }
+        return false;
     }
-
-    public void setListaEmpleados(List<Empleado> listaEmpleados1) {
-        this.listaEmpleados1 = listaEmpleados1;
-    }
-
 }

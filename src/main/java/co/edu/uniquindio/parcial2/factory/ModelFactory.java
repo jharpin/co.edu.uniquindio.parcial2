@@ -1,13 +1,11 @@
 package co.edu.uniquindio.parcial2.factory;
 
 import co.edu.uniquindio.parcial2.mapping.dto.ClienteDto;
+import co.edu.uniquindio.parcial2.mapping.dto.EmpleadoDto;
 import co.edu.uniquindio.parcial2.mapping.dto.ObjetoDto;
 import co.edu.uniquindio.parcial2.mapping.dto.PrestamoDto;
 import co.edu.uniquindio.parcial2.mapping.mappers.PrestamoMappingImpl;
-import co.edu.uniquindio.parcial2.model.Cliente;
-import co.edu.uniquindio.parcial2.model.Objeto;
-import co.edu.uniquindio.parcial2.model.Prestamo;
-import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
+import co.edu.uniquindio.parcial2.model.*;
 import co.edu.uniquindio.parcial2.service.IModelFactoryService;
 import co.edu.uniquindio.parcial2.service.IPrestamoMapping;
 import co.edu.uniquindio.parcial2.utils.DataUtil;
@@ -48,6 +46,9 @@ public class ModelFactory implements IModelFactoryService {
     }
 
     @Override
+    public List<EmpleadoDto> obtenerEmpleados() {return mapper.getEmpleadosDto(prestamoObjeto.getListaEmpleados());}
+
+    @Override
     public boolean agregarCliente(ClienteDto clienteDto) {
         Cliente cliente = mapper.clienteDtoToCliente(clienteDto);
         return prestamoObjeto.crearCliente(cliente);
@@ -65,19 +66,21 @@ public class ModelFactory implements IModelFactoryService {
         return prestamoObjeto.eliminarCliente(cedula);
     }
 
+    @Override
+    public boolean agregarEmpleado(EmpleadoDto empleadoDto) {
+        Empleado empleado = mapper.empleadoDtoToEmpleado(empleadoDto);
+        return prestamoObjeto.crearEmpleado(empleado);
+    }
 
     @Override
-    public boolean agregarEmpleado() {
-        return false;
-    }
-    @Override
-    public boolean actualizarEmpleado() {
-         return false;
+    public boolean actualizarEmpleado(EmpleadoDto empleadoDto) {
+        Empleado empleado= mapper.empleadoDtoToEmpleado(empleadoDto);
+        return prestamoObjeto.actualizarEmpleado(empleado);
            }
 
     @Override
-    public boolean eliminarEmpleado() {
-        return false;
+    public boolean eliminarEmpleado(String cedula) {
+        return prestamoObjeto.eliminarEmpleado(cedula);
     }
 
     @Override

@@ -6,7 +6,8 @@ public record EmpleadoDto(
                           String cedula,
                           String correo,
                           String direccion,
-                        String tipoEmpleado
+                            int edad
+
 ) {
 }
 
