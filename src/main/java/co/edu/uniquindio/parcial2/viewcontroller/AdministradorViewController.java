@@ -9,7 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 public class AdministradorViewController {
-
+ 
     @FXML
     private ResourceBundle resources;
 
@@ -51,4 +51,5 @@ public class AdministradorViewController {
     @FXML
     void initialize() {
     }
+
 }
