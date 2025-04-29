@@ -77,8 +77,8 @@ public class AdministradorViewController {
 */
     @FXML
     void initialize() {
-        tcCodigoObjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().idObjeto()));
-        tcNombreObjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreObjeto()));
+        //tcCodigoObjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().idObjeto()));
+        //tcNombreObjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreObjeto()));
         // Solo si tienes disponibilidad y rango en ObjetoDto
         // tcDisponibilidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().disponibilidad()));
         // tcRangoobjeto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().rango()));
