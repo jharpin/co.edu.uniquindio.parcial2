@@ -118,12 +118,12 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 .build();
     }
     @Override
-    public List<EmpleadoDto> getEmpleadosDto(List<Empleado> listaEmpleados) {
-        if (listaEmpleados == null) {
+    public List<EmpleadoDto> getEmpleadosDto(List<Empleado> listaEmpleados1) {
+        if (listaEmpleados1 == null) {
             return null;
         }
-        List<EmpleadoDto> listaEmpleadosDto = new ArrayList<>(listaEmpleados.size());
-        for (Empleado empleado : listaEmpleados) {
+        List<EmpleadoDto> listaEmpleadosDto = new ArrayList<>(listaEmpleados1.size());
+        for (Empleado empleado : listaEmpleados1) {
             listaEmpleadosDto.add(empleadoToEmpleadoDto(empleado));
         }
 

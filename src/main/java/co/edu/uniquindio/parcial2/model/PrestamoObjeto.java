@@ -10,6 +10,7 @@ public class PrestamoObjeto {
 
     List<Cliente> listaClientes = new ArrayList<>();
     List<EmpleadoController> listaEmpleados = new ArrayList<>();
+    List<Empleado>listaEmpleados1 = new ArrayList<>();
     List<Objeto> listaObjetos = new ArrayList<>();
     List<Prestamo> listaPrestamos = new ArrayList<>();
 
@@ -214,7 +215,7 @@ public boolean eliminarPrestamo(String numeroPrestamo) {
     }
 
     // Listar empleados
-    public List<EmpleadoController> listarEmpleados() {
+   public List<EmpleadoController> listarEmpleados() {
         return listaEmpleados;
     }
 
@@ -223,7 +224,20 @@ public boolean eliminarPrestamo(String numeroPrestamo) {
         return listaEmpleados;
     }
 
-    public void setListaEmpleados(List<EmpleadoController> listaEmpleados) {
-        this.listaEmpleados = listaEmpleados;
+
+
+
+    public List<Empleado> listarEmpleados1() {
+        return listaEmpleados1;
     }
+
+    // Getter y Setter de listaEmpleados
+    public List<Empleado> getListaEmpleados1() {
+        return listaEmpleados1;
+    }
+
+    public void setListaEmpleados(List<Empleado> listaEmpleados1) {
+        this.listaEmpleados1 = listaEmpleados1;
+    }
+
 }
