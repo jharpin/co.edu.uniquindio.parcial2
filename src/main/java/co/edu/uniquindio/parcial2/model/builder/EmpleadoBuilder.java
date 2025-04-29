@@ -40,13 +40,13 @@ public class EmpleadoBuilder {
     }
 
     public Empleado build() {
-        return new Empleado(// 1. cedula
-                nombre,       // 2. nombre
-                apellido,     // 3. apellido
+        return new Empleado(
+                nombre,
+                apellido,
                 cedula,
-                edad,         // 4. edad
-                correo,       // 5. correo
-                direccioon    // 6. direccion
+                edad,
+                correo,
+                direccioon
         );
     }}
 

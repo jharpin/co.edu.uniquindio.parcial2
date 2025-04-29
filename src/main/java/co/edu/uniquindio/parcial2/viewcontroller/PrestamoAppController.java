@@ -197,7 +197,7 @@ EmpleadoController empleadoController;
 
     @FXML
     void onNuevoPrestamo(ActionEvent event) {
-    //nuevoPrestamo();
+    nuevoPrestamo();
     }
 
 
@@ -291,9 +291,14 @@ private void limpiarFormulario() {
     txtDescripcion.clear();
     dataFechaPrestamo.setValue(null);
     dataFechaEntrega.setValue(null);
+    cmbEmpleado.setValue(null);
     cmbClientes.setValue(null);
     cmbObjeto.setValue(null);
     prestamoSeleccionado = null;
+}
+private void nuevoPrestamo() {
+        limpiarFormulario();
+        txtNumeroPrestamo.setText("ingrese prestamo nuevo");
 }
     private void mostrarAlerta(String mensaje, javafx.scene.control.Alert.AlertType tipo) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(tipo);
