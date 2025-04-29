@@ -1,6 +1,6 @@
 package co.edu.uniquindio.parcial2.utils;
 
-import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Controller.EmpleadoController;
+import co.edu.uniquindio.parcial2.controller.EmpleadoController;
 import co.edu.uniquindio.parcial2.model.*;
 import co.edu.uniquindio.parcial2.model.PrestamoObjeto;
 
@@ -71,7 +71,15 @@ public class DataUtil {
                 .cedula("1097")
                 .direccion("armenia")
                 .correo("ana@gmail.com")
-                .tipoEmpleado("temporal")
+                .edad(6)
+                        .build();
+        Empleado empleado2= Empleado.builder()
+                .nombre("pedro")
+                .apellido("perez")
+                .cedula("1098")
+                .direccion("pereira")
+                .correo("pedro@gmail.com")
+                .edad(7)
                         .build();
         Empleado empleado2 =Empleado.builder()
                 .nombre("laura")
@@ -89,7 +97,8 @@ public class DataUtil {
         prestamoObjeto.getListaClientes().add(cliente2);
         prestamoObjeto.getListaClientes().add(cliente3);
         prestamoObjeto.getListaPrestamos().add(prestamo1);
-        prestamoObjeto.getListaEmpleados1().add(empleado1);
+        prestamoObjeto.getListaEmpleados().add(empleado1);
+        prestamoObjeto.getListaEmpleados().add(empleado2);
         return prestamoObjeto;
     }
 }

@@ -1,6 +1,6 @@
 package co.edu.uniquindio.parcial2.model;
 
-import co.edu.uniquindio.parcial2.EjemploFactoryMethod.Model.Empleado;
+import co.edu.uniquindio.parcial2.model.Empleado;
 import co.edu.uniquindio.parcial2.model.builder.PrestamoBuilder;
 
 import java.time.LocalDate;

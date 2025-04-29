@@ -146,7 +146,7 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 empleado.getCedula(),
                 empleado.getCorreo(),
                 empleado.getDireccion(),
-                empleado.getTipoEmpleado());
+                empleado.getEdad());
 
     }
 
@@ -158,7 +158,7 @@ public  class PrestamoMappingImpl implements IPrestamoMapping {
                 .apellido(empleadoDto.apellido())
                 .direccion(empleadoDto.direccion())
                 .correo(empleadoDto.correo())
-                .tipoEmpleado(empleadoDto.tipoEmpleado())
+                .edad(empleadoDto.edad())
                 .build();
     }
 
