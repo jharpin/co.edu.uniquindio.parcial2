@@ -81,14 +81,7 @@ public class DataUtil {
                 .correo("pedro@gmail.com")
                 .edad(7)
                         .build();
-        Empleado empleado2 =Empleado.builder()
-                .nombre("laura")
-                .apellido("diaz")
-                .cedula("2089")
-                .direccion("armenia")
-                .correo("laura@gmail.com")
-                .tipoEmpleado("Permanente")
-                .build();
+
 
         prestamoObjeto.getListaObjetos().add(objeto);
         prestamoObjeto.getListaObjetos().add(objeto1);
