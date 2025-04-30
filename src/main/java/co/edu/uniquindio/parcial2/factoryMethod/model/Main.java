@@ -8,6 +8,12 @@ public class Main {
         AplicacionMovil apliMovil = aplifabrica.getAplicacionMovil("AplicacionMovilIOs");
 
         apliMovil.mostrarInformacion();
+
+        SistemasGestionFabrica sistemfabrica  = new SistemasGestionFabrica();
+
+       SistemaGestion sistema = sistemfabrica.getSistemasGestion("SistemasCRM");
+
+        sistema.gestionarSistemas();
     }
 }
 
