@@ -3,11 +3,11 @@ package co.edu.uniquindio.parcial2.factoryMethod.model;
 public class Main {
     public static void main(String[] args) {
 
-       AplicacionFabrica  = new EmpleadoFabrica();
+       AplicacionFabrica aplifabrica  = new AplicacionFabrica();
 
-        Empleado emp = fabrica.getEmpleado("EmpleadoPermanente");
+        AplicacionMovil apliMovil = aplifabrica.getAplicacionMovil("AplicacionMovilIOs");
 
-        emp.mostrarInformacion();
+        apliMovil.mostrarInformacion();
     }
 }
-}
+
